@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer club Regestration</title>
+</head>
+<body>
+    <h2>Computer Club Regestration</h2>
+    <form>
+        <table border="0" cellpadding="5" cellspacing="2">
+            <tr>
+                <td><label>Name : </label></td>
+                <td><input type="text" placeholder="Enter your name" required></td>
+            </tr>
+            <tr>
+                <td><lable>Phone Number : </lable></td>
+                <td><input type="number" placeholder="Enter Phone Number" required></td>
+            </tr>
+            <tr>
+                <td><label>Date of Birth : </label></td>
+                <td><input type="date" id="birthday" min="01-01-1940" max="01-01-2018" placeholder="Enter DOB" required></td>
+            </tr>
+            <tr>
+                <td><label>Gender : </label></td>
+                <td><input type="radio" name="gender">Male</td>
+                <td><input type="Radio" name="gender">Female</td>
+            </tr>
+            <tr>
+                <td><lable type="department">department : </lable></td>
+                <td>
+                    <select>
+                        <option>Software Engineering</option>
+                        <option >Computer Science</option>
+                        <option>Data Sciene</option>
+                        <option>Computer Information System</option>
+                    </select>
+                </td>
+                
+            </tr>
+            <tr>
+                <td><label>Self-Introduction : </label></td>
+                <td><textarea rows=5 cols="20"></textarea></td>
+            </tr>
+            <tr>
+                <td><label>Area of Interest : </label></td>
+                <td><input type="checkbox">Web Development</td>
+                <td><input type="checkbox">Competitive Programming</td>
+                <td><input type="checkbox">Leetcode Solvers</td>
+            </tr>
+            <tr>
+                <td><button type="submit">Submit</button></td>
+            </tr>
+        </table>
+    </form>
+    
+</body>
+</html>
