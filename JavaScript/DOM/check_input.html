@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+<label>Enter Input:</label>
+<input type="text" id="textInput">
+<button onclick="verifyText()">
+Verify
+</button>
+<p id="result"></p>
+<script>
+function verifyText() {
+let code =
+document.getElementById("textInput").value;
+let message;
+if (code.length < 5) {
+message = "Too short"; }
+else {
+message = "Accepted";
+}
+let result = document.getElementById("result");
+result.innerText = message;
+}
+</script>
+</body>
+</html>
