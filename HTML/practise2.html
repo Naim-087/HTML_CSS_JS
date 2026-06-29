@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Notice Board</title>
+
+    <style>
+        /* I. Dark background and light text */
+        body{
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* III. Margin between major sections */
+        h1, p, h3, ul, button{
+            margin: 20px;
+        }
+
+        /* II. Skyblue border with padding */
+        ul{
+            border: 2px solid skyblue;
+            padding: 20px;
+            width: fit-content;
+            list-style-type: square;
+        }
+
+        /* IV. First letter of each list item */
+        li::first-letter{
+            color: purple;
+            font-size: 150%;
+            font-weight: bold;
+        }
+
+        /* V. Footer style */
+        .footer{
+            color: lime;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Library Notice Board</h1>
+
+    <p class="intro">
+        Welcome to the central library. Please read the instructions
+        carefully before using the facilities.
+    </p>
+
+    <h3>Important Rules</h3>
+
+    <ul>
+        <li>Maintain silence inside the library.</li>
+        <li>Mobile phones must be kept on silent mode.</li>
+        <li>Books must be returned on time.</li>
+    </ul>
+
+    <button>Read More</button>
+
+    <p class="footer">
+        Created by Library Administration
+    </p>
+
+</body>
+</html>
