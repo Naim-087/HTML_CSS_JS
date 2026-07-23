@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A heartfelt digital love letter, made with love."
+    />
+    <title>To My Little Dove ❤️</title>
+
+    <!-- Google Fonts: Great Vibes (headings) + Poppins (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ============================================= -->
+    <!-- ❤️ HERO SECTION -->
+    <!-- ============================================= -->
+    <section class="hero" id="hero">
+      <!-- Floating hearts are injected here by JavaScript -->
+      <div class="floating-hearts" id="floatingHearts" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <h1 class="hero__title">To My Little Dove ❤️</h1>
+        <p class="hero__subtitle">
+          Every moment with you is my favorite memory.
+        </p>
+        <button class="btn-glow" id="startBtn">Start Our Story</button>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="scroll-cue" aria-hidden="true">
+        <span></span>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- 💌 LOVE LETTER SECTION -->
+    <!-- ============================================= -->
+    <section class="letter" id="letter">
+      <div class="glass-card reveal" id="letterCard">
+        <h2 class="section-title">A Letter For You 💌</h2>
+
+        <!-- Typing animation writes into this element -->
+        <p class="letter__text">
+          <span id="letterText"></span><span class="cursor" id="cursor">|</span>
+        </p>
+
+        <p class="letter__signature">
+          Forever yours,<br />
+          <span id="signature"></span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- 💖 FINAL SURPRISE SECTION -->
+    <!-- ============================================= -->
+    <section class="surprise" id="surprise">
+      <div class="glass-card reveal surprise__card">
+        <h2 class="section-title">Will you stay with me forever? ❤️</h2>
+
+        <div class="surprise__buttons">
+          <button class="btn-yes" id="yesBtn">YES ❤️</button>
+          <button class="btn-no" id="noBtn">NO 😢</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- ❤️ FOOTER -->
+    <!-- ============================================= -->
+    <footer class="footer">
+      <p>Made with ❤️ just for you.</p>
+    </footer>
+
+    <!-- ============================================= -->
+    <!-- 💝 ROMANTIC POPUP (hidden by default) -->
+    <!-- ============================================= -->
+    <div class="popup-overlay" id="popupOverlay" aria-hidden="true">
+      <div class="popup" role="dialog" aria-modal="true">
+        <div class="popup__heart">❤️</div>
+        <h3 class="popup__title">
+          You just made me the happiest person alive ❤️
+        </h3>
+        <button class="btn-glow popup__close" id="popupClose">
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!-- Confetti is drawn on this canvas -->
+    <canvas class="confetti-canvas" id="confettiCanvas" aria-hidden="true"></canvas>
+
+    <script src="script.js"></script>
+  </body>
+</html>
