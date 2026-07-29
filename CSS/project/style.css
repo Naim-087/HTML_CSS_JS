@@ -1,0 +1,461 @@
+/* ============================================================
+   THEME & GLOBAL VARIABLES
+   Soft pink, white & rose-gold romantic palette
+   ============================================================ */
+:root {
+  --pink-soft: #ffe3ec;
+  --pink-light: #fff5f8;
+  --pink: #ffb6c9;
+  --rose: #f78ca0;
+  --rose-deep: #e8607d;
+  --rose-gold: #b76e79;
+  --rose-gold-light: #d99ba5;
+  --white: #ffffff;
+  --text: #5a3d44;
+  --text-soft: #8a6a70;
+
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --shadow: 0 20px 50px rgba(183, 110, 121, 0.25);
+
+  --font-head: "Great Vibes", cursive;
+  --font-body: "Poppins", sans-serif;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* Smooth scrolling between sections */
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  line-height: 1.6;
+  background: linear-gradient(160deg, var(--pink-light) 0%, var(--pink-soft) 100%);
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   REUSABLE: SECTION TITLES
+   ============================================================ */
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  color: var(--rose-gold);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+/* ============================================================
+   REUSABLE: GLASSMORPHISM CARD
+   ============================================================ */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  padding: clamp(1.8rem, 5vw, 3.5rem);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  max-width: 640px;
+  width: 100%;
+}
+
+/* ============================================================
+   REUSABLE: GLOWING BUTTON
+   ============================================================ */
+.btn-glow {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--rose) 0%, var(--rose-deep) 100%);
+  border: none;
+  padding: 0.95rem 2.6rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(247, 140, 160, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: soft-glow 2.5s ease-in-out infinite;
+}
+
+.btn-glow:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 0 35px rgba(232, 96, 125, 0.85);
+}
+
+@keyframes soft-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(247, 140, 160, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(232, 96, 125, 0.8);
+  }
+}
+
+/* ============================================================
+   ❤️ HERO SECTION
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 50% 30%,
+    var(--pink-soft) 0%,
+    var(--pink) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  animation: fade-up 1.4s ease both;
+}
+
+.hero__title {
+  font-family: var(--font-head);
+  font-size: clamp(3rem, 10vw, 6rem);
+  color: var(--rose-gold);
+  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.6);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.hero__subtitle {
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  font-weight: 300;
+  color: var(--text);
+  margin-bottom: 2.2rem;
+  max-width: 30ch;
+  margin-inline: auto;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating hearts container */
+.floating-hearts {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -40px;
+  color: var(--rose);
+  opacity: 0;
+  animation: float-up linear infinite, heartbeat 1.2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-115vh) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* Heartbeat pulse used by hearts */
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.18);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+}
+
+/* Scroll cue at bottom of hero */
+.scroll-cue {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 42px;
+  border: 2px solid var(--rose-gold);
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.scroll-cue span {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  background: var(--rose-gold);
+  border-radius: 50%;
+  animation: scroll-bounce 1.6s infinite;
+}
+
+@keyframes scroll-bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* ============================================================
+   💌 LOVE LETTER SECTION
+   ============================================================ */
+.letter {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+}
+
+.letter__text {
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+  font-weight: 300;
+  color: var(--text);
+  white-space: pre-wrap; /* Preserve line breaks from the JS variable */
+  min-height: 6em;
+  text-align: center;
+}
+
+/* Blinking cursor for the typing animation */
+.cursor {
+  color: var(--rose-deep);
+  font-weight: 400;
+  animation: blink 0.9s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.letter__signature {
+  margin-top: 2rem;
+  text-align: right;
+  font-size: 1.1rem;
+  color: var(--text-soft);
+}
+
+.letter__signature span {
+  font-family: var(--font-head);
+  font-size: 1.8rem;
+  color: var(--rose-gold);
+}
+
+/* ============================================================
+   💖 FINAL SURPRISE SECTION
+   ============================================================ */
+.surprise {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+}
+
+.surprise__card {
+  text-align: center;
+}
+
+.surprise__buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  min-height: 80px;
+}
+
+.btn-yes {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--rose) 0%, var(--rose-deep) 100%);
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 22px rgba(232, 96, 125, 0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-yes:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 38px rgba(232, 96, 125, 0.9);
+}
+
+.btn-no {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--rose-gold);
+  background: var(--white);
+  border: 2px solid var(--rose-gold-light);
+  padding: 0.9rem 2.4rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  /* Positioning is handled dynamically by JS so it can run away */
+  position: relative;
+}
+
+/* ============================================================
+   SCROLL FADE-IN (toggled by JS IntersectionObserver)
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   ❤️ FOOTER
+   ============================================================ */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  background: var(--rose-gold);
+  color: var(--white);
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+/* ============================================================
+   💝 ROMANTIC POPUP
+   ============================================================ */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(183, 110, 121, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.popup-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 28px;
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: var(--shadow);
+  transform: scale(0.8);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.popup-overlay.is-open .popup {
+  transform: scale(1);
+}
+
+.popup__heart {
+  font-size: 3.5rem;
+  animation: heartbeat 1.1s ease-in-out infinite;
+  margin-bottom: 0.5rem;
+}
+
+.popup__title {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  color: var(--rose-gold);
+  line-height: 1.25;
+  margin-bottom: 1.8rem;
+}
+
+/* ============================================================
+   🎉 CONFETTI CANVAS
+   ============================================================ */
+.confetti-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+}
+
+/* ============================================================
+   ACCESSIBILITY: respect reduced motion preferences
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
