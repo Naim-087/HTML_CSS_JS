@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="description" content="MediReminder Dashboard">
+    <meta name="author" content="Naim Islam">
+
+    <!-- Title -->
+    <title>Dashboard | MediReminder</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/icons/favicon.ico">
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="header__logo">
+
+            <h1>MediReminder</h1>
+
+        </div>
+
+        <nav class="navigation">
+
+            <ul class="navigation__list">
+
+                <li><a href="dashboard.html">Dashboard</a></li>
+
+                <li><a href="add-medicine.html">Add Medicine</a></li>
+
+                <li><a href="medicines.html">Medicines</a></li>
+
+                <li><a href="history.html">History</a></li>
+
+                <li><a href="about.html">About</a></li>
+
+            </ul>
+
+        </nav>
+
+        <div class="header__profile">
+
+            <button type="button">
+                Profile
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="dashboard">
+
+
+
+        <!-- Hero Section -->
+
+        <section class="hero">
+
+            <div class="hero__content">
+
+                <h2>
+                    Welcome Back, Naim 👋
+                </h2>
+
+                <p>
+                    Here's your medicine schedule for today.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Statistics -->
+
+        <section class="statistics">
+
+            <header class="section-header">
+
+                <h2>Overview</h2>
+
+            </header>
+
+            <div class="statistics__container">
+
+                <article class="stat-card">
+
+                    <h3 class="stat-card__title">
+                        Today's Medicines
+                    </h3>
+
+                    <p class="stat-card__value">
+                        5
+                    </p>
+
+                </article>
+
+
+
+                <article class="stat-card">
+
+                    <h3 class="stat-card__title">
+                        Taken
+                    </h3>
+
+                    <p class="stat-card__value">
+                        3
+                    </p>
+
+                </article>
+
+
+
+                <article class="stat-card">
+
+                    <h3 class="stat-card__title">
+                        Missed
+                    </h3>
+
+                    <p class="stat-card__value">
+                        1
+                    </p>
+
+                </article>
+
+
+
+                <article class="stat-card">
+
+                    <h3 class="stat-card__title">
+                        Completion
+                    </h3>
+
+                    <p class="stat-card__value">
+                        60%
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Today's Medicines -->
+
+        <section class="today-medicines">
+
+            <header class="section-header">
+
+                <h2>Today's Medicines</h2>
+
+            </header>
+
+
+
+            <div class="medicine-list">
+
+                <article class="medicine-card">
+
+                    <header class="medicine-card__header">
+
+                        <h3>Paracetamol 500mg</h3>
+
+                    </header>
+
+                    <div class="medicine-card__body">
+
+                        <p>Dosage : 1 Tablet</p>
+
+                        <p>Time : 08:00 AM</p>
+
+                        <p>Status : Pending</p>
+
+                    </div>
+
+                    <footer class="medicine-card__footer">
+
+                        <button type="button">
+
+                            Mark as Taken
+
+                        </button>
+
+                    </footer>
+
+                </article>
+
+
+
+                <article class="medicine-card">
+
+                    <header class="medicine-card__header">
+
+                        <h3>Vitamin D3</h3>
+
+                    </header>
+
+                    <div class="medicine-card__body">
+
+                        <p>Dosage : 1 Capsule</p>
+
+                        <p>Time : 02:00 PM</p>
+
+                        <p>Status : Pending</p>
+
+                    </div>
+
+                    <footer class="medicine-card__footer">
+
+                        <button type="button">
+
+                            Mark as Taken
+
+                        </button>
+
+                    </footer>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Upcoming Reminder -->
+
+        <section class="reminder">
+
+            <header class="section-header">
+
+                <h2>
+                    Upcoming Reminder
+                </h2>
+
+            </header>
+
+            <article class="reminder-card">
+
+                <h3>
+                    Vitamin D3
+                </h3>
+
+                <p>
+                    Reminder Time : 02:00 PM
+                </p>
+
+                <p>
+                    Remaining Time : 1 Hour 20 Minutes
+                </p>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- Progress -->
+
+        <section class="progress">
+
+            <header class="section-header">
+
+                <h2>
+                    Today's Progress
+                </h2>
+
+            </header>
+
+            <article class="progress-card">
+
+                <p>
+
+                    Progress : 60%
+
+                </p>
+
+                <progress value="60" max="100">
+
+                    60%
+
+                </progress>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- Recent Activity -->
+
+        <section class="activity">
+
+            <header class="section-header">
+
+                <h2>
+                    Recent Activity
+                </h2>
+
+            </header>
+
+            <ul class="activity-list">
+
+                <li>
+
+                    ✔ Paracetamol taken at 08:05 AM
+
+                </li>
+
+                <li>
+
+                    ✔ Vitamin C taken yesterday
+
+                </li>
+
+                <li>
+
+                    ✖ Insulin missed yesterday
+
+                </li>
+
+            </ul>
+
+        </section>
+
+
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+
+            © 2026 MediReminder | Smart Medicine Reminder System
+
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
