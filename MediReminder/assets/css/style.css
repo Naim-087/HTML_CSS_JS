@@ -1,0 +1,768 @@
+/* ==================================================
+   MEDIREMINDER
+   Main Stylesheet
+
+   Module 1 : Foundation
+   --------------------------------------------------
+   1. CSS Variables
+   2. Reset
+   3. Base Elements
+   4. Global Styles
+================================================== */
+
+
+
+/* ==================================================
+   1. CSS VARIABLES
+================================================== */
+
+:root{
+
+    /* ---------- Brand Colors ---------- */
+
+    --primary-color: #2563eb;
+    --primary-dark: #1e40af;
+
+    /* ---------- Background Colors ---------- */
+
+    --background-color: #ffffff;
+    --surface-color: #ffffff;
+
+    /* ---------- Text Colors ---------- */
+
+    --text-color: #1f2937;
+    --text-light: #6b7280;
+
+    /* ---------- Border ---------- */
+
+    --border-color: #e5e7eb;
+
+    /* ---------- Status Colors ---------- */
+
+    --success-color: #16a34a;
+    --warning-color: #f59e0b;
+    --danger-color: #dc2626;
+
+    /* ---------- Typography ---------- */
+
+    --font-family: "Poppins", sans-serif;
+
+    /* ---------- Border Radius ---------- */
+
+    --radius-small: 6px;
+    --radius-medium: 10px;
+    --radius-large: 16px;
+
+    /* ---------- Shadow ---------- */
+
+    --shadow:
+
+        0 4px 12px rgba(0, 0, 0, 0.08);
+
+}
+
+
+
+/* ==================================================
+   2. RESET
+================================================== */
+
+*{
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+
+/* ==================================================
+   3. BASE ELEMENTS
+================================================== */
+
+html{
+
+    scroll-behavior: smooth;
+
+}
+
+body{
+
+    font-family: var(--font-family);
+
+    background-color: var(--background-color);
+
+    color: var(--text-color);
+
+    line-height: 1.6;
+
+}
+
+
+
+/* ==================================================
+   4. GLOBAL STYLES
+================================================== */
+
+img{
+
+    display: block;
+
+    max-width: 100%;
+
+}
+
+a{
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+ul{
+
+    list-style: none;
+
+}
+
+button{
+
+    font: inherit;
+
+    cursor: pointer;
+
+}
+
+input,
+select,
+textarea,
+button{
+
+    font: inherit;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* ==================================================
+   MODULE 2 : LAYOUT
+================================================== */
+
+/* ==========================
+   MAIN
+========================== */
+
+main{
+
+    width: min(1200px, 90%);
+
+    margin: 3rem auto;
+
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.header{
+
+    background-color: var(--surface-color);
+
+    padding: 1rem 5%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    box-shadow: var(--shadow);
+
+}
+
+/* ==========================
+   LOGO
+========================== */
+
+.logo h1{
+
+    color: var(--primary-color);
+
+    font-size: 1.8rem;
+
+    font-weight: 700;
+
+}
+
+/* ==========================
+   NAVIGATION
+========================== */
+
+.navigation__list{
+
+    display: flex;
+
+    gap: 2rem;
+
+}
+
+.navigation__list a{
+
+    font-weight: 500;
+
+    transition: color .3s ease;
+
+}
+
+.navigation__list a:hover{
+
+    color: var(--primary-color);
+
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+.footer{
+
+    background-color: var(--surface-color);
+
+    text-align: center;
+
+    padding: 2rem;
+
+    border-top: 1px solid var(--border-color);
+
+    color: var(--text-light);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==================================================
+   MODULE 3 : FORMS
+================================================== */
+
+form{
+
+    max-width:700px;
+    margin:2rem auto;
+    background-color:var(--surface-color);
+    padding:2rem;
+    border-radius:var(--radius-large);
+    box-shadow:var(--shadow);
+
+}
+
+fieldset{
+
+    border:1px solid var(--border-color);
+    border-radius:var(--radius-medium);
+    padding:1.5rem;
+    margin-bottom:2rem;
+
+}
+
+legend{
+
+    padding:0 .5rem;
+    color:var(--primary-color);
+    font-weight:600;
+
+}
+
+.form-group{
+
+    display:flex;
+    flex-direction:column;
+    margin-bottom:1.5rem;
+
+}
+
+label{
+
+    margin-bottom:.5rem;
+    font-weight:500;
+
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+    padding:.8rem 1rem;
+    border:1px solid var(--border-color);
+    border-radius:var(--radius-small);
+    background-color:#fff;
+    outline:none;
+    transition:border-color .3s ease;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:var(--primary-color);
+
+}
+
+textarea{
+
+    resize:vertical;
+    min-height:120px;
+
+}
+
+button{
+
+    background-color:var(--primary-color);
+    color:#fff;
+    border:none;
+    padding:.9rem 1.5rem;
+    border-radius:var(--radius-small);
+    font-weight:600;
+    transition:background-color .3s ease;
+
+}
+
+button:hover{
+
+    background-color:var(--primary-dark);
+
+}
+
+button[type="submit"]{
+
+    width:100%;
+    margin-top:1rem;
+
+}
+
+
+
+
+
+
+
+
+/* ==================================================
+   MODULE 4 : CARDS
+================================================== */
+
+main section h2{
+
+    font-size:2rem;
+    margin-bottom:.5rem;
+
+}
+
+main section > p{
+
+    margin-bottom:2rem;
+    color:var(--text-light);
+
+}
+
+.card{
+
+    background-color:var(--surface-color);
+    border-radius:var(--radius-large);
+    padding:1.5rem;
+    box-shadow:var(--shadow);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,.12);
+
+}
+
+.card h3{
+
+    margin-bottom:1rem;
+    color:var(--primary-color);
+
+}
+
+.card p{
+
+    margin-bottom:.6rem;
+    color:var(--text-light);
+
+}
+
+.empty-state{
+
+    text-align:center;
+    padding:3rem;
+    background:var(--surface-color);
+    border:2px dashed var(--border-color);
+    border-radius:var(--radius-large);
+    color:var(--text-light);
+
+}
+
+.stat-card{
+
+    text-align:center;
+
+}
+
+.stat-card h3{
+
+    font-size:2rem;
+    color:var(--primary-color);
+
+}
+
+.medicine-card{
+
+    border-left:5px solid var(--primary-color);
+
+}
+
+.history-card{
+
+    border-left:5px solid var(--success-color);
+
+}
+
+.card button{
+
+    width:auto;
+    margin-top:1rem;
+    margin-right:.5rem;
+
+}
+
+
+
+
+
+
+/* ==================================================
+   MODULE 5 : DASHBOARD LAYOUT
+================================================== */
+
+.statistics,
+.medicine-list,
+.reminder-list,
+.history-list{
+
+    display:grid;
+
+    gap:1.5rem;
+
+    margin-top:2rem;
+
+}
+
+.statistics{
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+}
+
+.medicine-list,
+.history-list{
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(300px,1fr));
+
+}
+
+.reminder-list{
+
+    grid-template-columns:1fr;
+
+}
+
+.stat-card h3{
+
+    font-size:2.2rem;
+
+    margin-bottom:.5rem;
+
+}
+
+.stat-card p{
+
+    margin:0;
+
+}
+
+.dashboard h2{
+
+    margin-bottom:1rem;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* ==================================================
+   MODULE 6 : RESPONSIVE DESIGN
+================================================== */
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width:768px){
+
+    .header{
+
+        flex-direction:column;
+
+        gap:1rem;
+
+    }
+
+    .navigation__list{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+    }
+
+    main{
+
+        width:95%;
+
+    }
+
+    form{
+
+        padding:1.5rem;
+
+    }
+
+    fieldset{
+
+        padding:1rem;
+
+    }
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width:576px){
+
+    .logo h1{
+
+        font-size:1.5rem;
+
+    }
+
+    .navigation__list{
+
+        gap:1rem;
+
+    }
+
+    main section h2{
+
+        font-size:1.5rem;
+
+    }
+
+    .card{
+
+        padding:1rem;
+
+    }
+
+    button{
+
+        padding:.8rem;
+
+    }
+
+}
+
+
+
+
+
+
+/* ==================================================
+   MODULE 7 : UI POLISH & ANIMATIONS
+================================================== */
+
+.navigation__list a{
+
+    position:relative;
+
+}
+
+.navigation__list a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-5px;
+
+    width:0;
+
+    height:2px;
+
+    background-color:var(--primary-color);
+
+    transition:width .3s ease;
+
+}
+
+.navigation__list a:hover::after{
+
+    width:100%;
+
+}
+
+button{
+
+    transition:
+        background-color .3s ease,
+        transform .2s ease;
+
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+button:active{
+
+    transform:translateY(1px);
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    box-shadow:
+        0 0 0 4px rgba(74,144,226,.15);
+
+}
+
+.card{
+
+    cursor:pointer;
+
+}
+
+img{
+
+    transition:transform .3s ease;
+
+}
+
+.card:hover img{
+
+    transform:scale(1.05);
+
+}
+
+button:disabled{
+
+    background:#bdbdbd;
+
+    cursor:not-allowed;
+
+    opacity:.7;
+
+}
+
+::selection{
+
+    background:var(--primary-color);
+
+    color:#fff;
+
+}
+
+a{
+
+    transition:color .3s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+main{
+
+    animation:fadeIn .6s ease;
+
+}
+
+
+
+
+

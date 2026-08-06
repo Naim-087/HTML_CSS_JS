@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <meta name="description" content="Add a new medicine.">
+
+    
+    <title>MediReminder | Add Medicine</title>
+
+   
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!--  HEADER  -->
+
+    <header class="header">
+
+        <div class="logo">
+            <h1>MediReminder</h1>
+        </div>
+
+        <nav class="navigation">
+            <ul class="navigation__list">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="medicines.html">Medicines</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="login.html">Logout</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- = MAIN = -->
+
+    <main>
+
+        <section class="add-medicine">
+
+            <h2>Add New Medicine</h2>
+
+            <p>
+                Enter your medicine details below to schedule reminders.
+            </p>
+
+            <form action="#" method="post">
+
+                <!-- Medicine Information -->
+
+                <fieldset>
+
+                    <legend>Medicine Information</legend>
+
+                    <div>
+                        <label for="medicine-name">Medicine Name</label><br>
+
+                        <input
+                            type="text"
+                            id="medicine-name"
+                            name="medicine-name"
+                            placeholder="Enter medicine name"
+                            required>
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <label for="dosage">Dosage</label><br>
+
+                        <input
+                            type="text"
+                            id="dosage"
+                            name="dosage"
+                            placeholder="Example: 500 mg"
+                            required>
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <label for="medicine-type">Medicine Type</label><br>
+
+                        <select
+                            id="medicine-type"
+                            name="medicine-type"
+                            required>
+
+                            <option value="">Select Medicine Type</option>
+                            <option value="tablet">Tablet</option>
+                            <option value="capsule">Capsule</option>
+                            <option value="syrup">Syrup</option>
+                            <option value="injection">Injection</option>
+                            <option value="drops">Drops</option>
+                            <option value="other">Other</option>
+
+                        </select>
+                    </div>
+
+                </fieldset>
+
+                <br>
+
+                <!-- Reminder Information -->
+
+                <fieldset>
+
+                    <legend>Reminder Information</legend>
+
+                    <div>
+                        <label for="start-date">Start Date</label><br>
+
+                        <input
+                            type="date"
+                            id="start-date"
+                            name="start-date"
+                            required>
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <label for="end-date">End Date</label><br>
+
+                        <input
+                            type="date"
+                            id="end-date"
+                            name="end-date"
+                            required>
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <label for="reminder-time">Reminder Time</label><br>
+
+                        <input
+                            type="time"
+                            id="reminder-time"
+                            name="reminder-time"
+                            required>
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <label for="frequency">Frequency</label><br>
+
+                        <select
+                            id="frequency"
+                            name="frequency"
+                            required>
+
+                            <option value="">Select Frequency</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+
+                        </select>
+                    </div>
+
+                </fieldset>
+
+                <br>
+
+                <!-- Additional Information -->
+
+                <fieldset>
+
+                    <legend>Additional Information</legend>
+
+                    <div>
+                        <label for="notes">Notes</label><br>
+
+                        <textarea
+                            id="notes"
+                            name="notes"
+                            rows="5"
+                            placeholder="Write additional instructions (optional)"></textarea>
+                    </div>
+
+                </fieldset>
+
+                <br>
+
+                <!-- Buttons -->
+
+                <button type="submit">
+                    Save Medicine
+                </button>
+
+                <button type="reset">
+                    Reset
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>&copy; 2026 MediReminder</p>
+
+        <p>Academic Project</p>
+
+        <p>Department of Software Engineering</p>
+
+    </footer>
+
+</body>
+
+</html>
