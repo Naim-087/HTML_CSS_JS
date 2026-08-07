@@ -1,0 +1,12 @@
+{
+  "name": "medireminder",
+  "version": "1.0.0",
+  "description": "Medicine Reminder Desktop Application",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "author": "Naim Islam",
+  "license": "ISC"
+}
+
