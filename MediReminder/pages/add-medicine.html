@@ -2,43 +2,57 @@
 <html lang="en">
 
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
-    <meta name="description" content="Add a new medicine.">
+    <meta name="description" content="Add a new medicine to your reminder schedule.">
+    <meta name="author" content="Naim Islam">
 
-    
+  
+
     <title>MediReminder | Add Medicine</title>
 
-   
+
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="../assets/icons/favicon.ico">
+
 </head>
 
 <body>
 
-    <!--  HEADER  -->
+    <!-- HEADER  -->
 
     <header class="header">
 
         <div class="logo">
+
             <h1>MediReminder</h1>
+
         </div>
 
         <nav class="navigation">
+
             <ul class="navigation__list">
+
                 <li><a href="dashboard.html">Dashboard</a></li>
+
                 <li><a href="medicines.html">Medicines</a></li>
+
                 <li><a href="history.html">History</a></li>
+
                 <li><a href="profile.html">Profile</a></li>
+
                 <li><a href="login.html">Logout</a></li>
+
             </ul>
+
         </nav>
 
     </header>
 
-    <!-- = MAIN = -->
+
+
+    <!--  MAIN CONTENT -->
 
     <main>
 
@@ -47,19 +61,36 @@
             <h2>Add New Medicine</h2>
 
             <p>
-                Enter your medicine details below to schedule reminders.
+
+                Enter your medicine information to schedule a reminder.
+
             </p>
 
-            <form action="#" method="post">
 
-                <!-- Medicine Information -->
+
+            <!-- ==========================
+                    MEDICINE FORM
+            =========================== -->
+
+            <form id="medicine-form" novalidate>
+
+                <!-- ==========================
+                        Medicine Information
+                =========================== -->
 
                 <fieldset>
 
                     <legend>Medicine Information</legend>
 
-                    <div>
-                        <label for="medicine-name">Medicine Name</label><br>
+
+
+                    <div class="form-group">
+
+                        <label for="medicine-name">
+
+                            Medicine Name
+
+                        </label>
 
                         <input
                             type="text"
@@ -67,12 +98,18 @@
                             name="medicine-name"
                             placeholder="Enter medicine name"
                             required>
+
                     </div>
 
-                    <br>
 
-                    <div>
-                        <label for="dosage">Dosage</label><br>
+
+                    <div class="form-group">
+
+                        <label for="dosage">
+
+                            Dosage
+
+                        </label>
 
                         <input
                             type="text"
@@ -80,12 +117,18 @@
                             name="dosage"
                             placeholder="Example: 500 mg"
                             required>
+
                     </div>
 
-                    <br>
 
-                    <div>
-                        <label for="medicine-type">Medicine Type</label><br>
+
+                    <div class="form-group">
+
+                        <label for="medicine-type">
+
+                            Medicine Type
+
+                        </label>
 
                         <select
                             id="medicine-type"
@@ -93,64 +136,98 @@
                             required>
 
                             <option value="">Select Medicine Type</option>
-                            <option value="tablet">Tablet</option>
-                            <option value="capsule">Capsule</option>
-                            <option value="syrup">Syrup</option>
-                            <option value="injection">Injection</option>
-                            <option value="drops">Drops</option>
-                            <option value="other">Other</option>
+
+                            <option value="Tablet">Tablet</option>
+
+                            <option value="Capsule">Capsule</option>
+
+                            <option value="Syrup">Syrup</option>
+
+                            <option value="Injection">Injection</option>
+
+                            <option value="Drops">Drops</option>
+
+                            <option value="Other">Other</option>
 
                         </select>
+
                     </div>
 
                 </fieldset>
 
-                <br>
 
-                <!-- Reminder Information -->
+
+                <!-- ==========================
+                        Reminder Information
+                =========================== -->
 
                 <fieldset>
 
                     <legend>Reminder Information</legend>
 
-                    <div>
-                        <label for="start-date">Start Date</label><br>
+
+
+                    <div class="form-group">
+
+                        <label for="start-date">
+
+                            Start Date
+
+                        </label>
 
                         <input
                             type="date"
                             id="start-date"
                             name="start-date"
                             required>
+
                     </div>
 
-                    <br>
 
-                    <div>
-                        <label for="end-date">End Date</label><br>
+
+                    <div class="form-group">
+
+                        <label for="end-date">
+
+                            End Date
+
+                        </label>
 
                         <input
                             type="date"
                             id="end-date"
                             name="end-date"
                             required>
+
                     </div>
 
-                    <br>
 
-                    <div>
-                        <label for="reminder-time">Reminder Time</label><br>
+
+                    <div class="form-group">
+
+                        <label for="time">
+
+                            Reminder Time
+
+                        </label>
 
                         <input
                             type="time"
-                            id="reminder-time"
-                            name="reminder-time"
+                            id="time"
+                            name="time"
                             required>
+
                     </div>
 
-                    <br>
 
-                    <div>
-                        <label for="frequency">Frequency</label><br>
+
+                    <div class="form-group">
+
+                        <label for="frequency">
+
+                            Frequency
+
+                        </label>
 
                         <select
                             id="frequency"
@@ -158,45 +235,70 @@
                             required>
 
                             <option value="">Select Frequency</option>
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
+
+                            <option value="Daily">Daily</option>
+
+                            <option value="Weekly">Weekly</option>
 
                         </select>
+
                     </div>
 
                 </fieldset>
 
-                <br>
 
-                <!-- Additional Information -->
+
+                <!-- Additional Notes-->
 
                 <fieldset>
 
-                    <legend>Additional Information</legend>
+                    <legend>Additional Notes</legend>
 
-                    <div>
-                        <label for="notes">Notes</label><br>
+
+
+                    <div class="form-group">
+
+                        <label for="notes">
+
+                            Notes
+
+                        </label>
 
                         <textarea
                             id="notes"
                             name="notes"
                             rows="5"
-                            placeholder="Write additional instructions (optional)"></textarea>
+                            placeholder="Write additional instructions (Optional)"></textarea>
+
                     </div>
 
                 </fieldset>
 
-                <br>
 
-                <!-- Buttons -->
 
-                <button type="submit">
-                    Save Medicine
-                </button>
+                <!--   BUTTONS   -->
 
-                <button type="reset">
-                    Reset
-                </button>
+                <div class="form-buttons">
+
+                    <button
+                        id="save-medicine-btn"
+                        type="submit">
+
+                        Save Medicine
+
+                    </button>
+
+
+
+                    <button
+                        id="reset-btn"
+                        type="reset">
+
+                        Reset
+
+                    </button>
+
+                </div>
 
             </form>
 
@@ -204,17 +306,28 @@
 
     </main>
 
-    <!-- ================= FOOTER ================= -->
 
+
+    <!-- FOOTER -->
+       
+  
     <footer class="footer">
 
-        <p>&copy; 2026 MediReminder</p>
+        <p>© 2026 MediReminder</p>
 
         <p>Academic Project</p>
 
         <p>Department of Software Engineering</p>
 
     </footer>
+
+
+
+    <!--  JAVASCRIPT -->
+           
+    
+
+    <script src="../assets/js/medicine.js"></script>
 
 </body>
 

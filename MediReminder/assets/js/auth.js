@@ -254,18 +254,6 @@ function validateSignup(user) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* =====================================================
                 SAVE USER
 ===================================================== */
@@ -351,6 +339,153 @@ function saveUsers(users) {
         JSON.stringify(users)
 
     );
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+                HANDLE LOGIN
+===================================================== */
+
+function handleLogin(event) {
+
+    event.preventDefault();
+
+    console.log("Login Button Clicked");
+
+    const loginData = getLoginData();
+
+    if (!validateLogin(loginData)) {
+
+        return;
+
+    }
+
+    const user = authenticateUser(loginData);
+
+    if (!user) {
+
+        alert("Invalid email or password.");
+
+        return;
+
+    }
+
+    createSession(user);
+
+    alert("Login Successful!");
+
+    window.location.href = "dashboard.html";
+
+}
+
+
+
+
+
+
+/* =====================================================
+                GET LOGIN DATA
+===================================================== */
+
+function getLoginData() {
+
+    return {
+
+        email: loginEmailInput.value.trim().toLowerCase(),
+
+        password: loginPasswordInput.value
+
+    };
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+                VALIDATE LOGIN
+===================================================== */
+
+function validateLogin(loginData) {
+
+    if (!loginData.email || !loginData.password) {
+
+        alert("Please enter your email and password.");
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+                AUTHENTICATE USER
+===================================================== */
+
+function authenticateUser(loginData) {
+
+    const users = getUsers();
+
+    const user = users.find(existingUser => {
+
+        return (
+
+            existingUser.email === loginData.email &&
+
+            existingUser.password === loginData.password
+
+        );
+
+    });
+
+    return user || null;
+
+}
+
+
+
+
+
+
+
+/* =====================================================
+                CREATE SESSION
+===================================================== */
+
+function createSession(user) {
+
+    localStorage.setItem(
+
+        "currentUser",
+
+        JSON.stringify(user)
+
+    );
+
+    console.log("User Logged In");
 
 }
 

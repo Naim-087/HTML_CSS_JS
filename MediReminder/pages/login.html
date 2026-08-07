@@ -3,28 +3,25 @@
 
 <head>
 
-   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO -->
-    <meta name="description" content="Login to MediReminder">
+    
+    <meta name="description" content="Login to your MediReminder account">
     <meta name="author" content="Naim Islam">
 
     
     <title>MediReminder | Login</title>
 
-    
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    
     <link rel="icon" href="../assets/icons/favicon.ico">
 
 </head>
 
 <body>
 
-    
+    <!--  HEADER -->
 
     <header class="header">
 
@@ -38,11 +35,17 @@
 
             <ul class="navigation__list">
 
-                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
 
-                <li><a href="about.html">About</a></li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
 
-                <li><a href="signup.html">Sign Up</a></li>
+                <li>
+                    <a href="signup.html">Sign Up</a>
+                </li>
 
             </ul>
 
@@ -52,7 +55,7 @@
 
 
 
-    
+    <!--  MAIN CONTENT  -->
 
     <main>
 
@@ -66,41 +69,63 @@
 
             </p>
 
-            <form action="#" method="post">
+
+
+            <!-- LOGIN FORM   -->
+
+            <form id="login-form" novalidate>
 
                 <fieldset>
 
                     <legend>Login Information</legend>
 
+
+
                     <div class="form-group">
 
-                        <label for="email">Email Address</label>
+                        <label for="login-email">
+
+                            Email Address
+
+                        </label>
 
                         <input
                             type="email"
-                            id="email"
-                            name="email"
+                            id="login-email"
+                            name="login-email"
                             placeholder="Enter your email"
+                            autocomplete="email"
                             required>
 
                     </div>
 
+
+
                     <div class="form-group">
 
-                        <label for="password">Password</label>
+                        <label for="login-password">
+
+                            Password
+
+                        </label>
 
                         <input
                             type="password"
-                            id="password"
-                            name="password"
+                            id="login-password"
+                            name="login-password"
                             placeholder="Enter your password"
+                            autocomplete="current-password"
                             required>
 
                     </div>
 
                 </fieldset>
 
-                <button type="submit">
+
+
+                <button
+                    id="login-btn"
+                    type="submit">
 
                     Login
 
@@ -108,11 +133,17 @@
 
             </form>
 
+
+
             <p>
 
                 Don't have an account?
 
-                <a href="signup.html">Create Account</a>
+                <a href="signup.html">
+
+                    Create Account
+
+                </a>
 
             </p>
 
@@ -122,7 +153,7 @@
 
 
 
-   
+    
 
     <footer class="footer">
 
@@ -131,6 +162,12 @@
         <p>Academic Project | Department of Software Engineering</p>
 
     </footer>
+
+
+
+    <!-- JAVASCRIPT-->
+
+    <script src="../assets/js/auth.js"></script>
 
 </body>
 
