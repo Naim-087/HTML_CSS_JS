@@ -3,27 +3,52 @@
 
 <head>
 
-  
+    <!-- ==========================
+            BASIC META
+    =========================== -->
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- 
-    <meta name="description" content="Manage your MediReminder profile">
-    <meta name="author" content="Naim Islam">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-  
+    <!-- ==========================
+            SEO
+    =========================== -->
+
+    <meta name="description"
+          content="Manage your MediReminder profile">
+
+    <meta name="author"
+          content="Naim Islam">
+
+    <!-- ==========================
+            TITLE
+    =========================== -->
+
     <title>MediReminder | Profile</title>
 
-    
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- ==========================
+            CSS
+    =========================== -->
 
-    <!-- Favicon -->
-    <link rel="icon" href="../assets/icons/favicon.ico">
+    <link rel="stylesheet"
+          href="../assets/css/style.css">
+
+    <!-- ==========================
+            FAVICON
+    =========================== -->
+
+    <link rel="icon"
+          href="../assets/icons/favicon.ico">
 
 </head>
 
 <body>
 
+    <!-- ==========================
+            HEADER
+    =========================== -->
 
     <header class="header">
 
@@ -55,172 +80,157 @@
 
 
 
-    
+    <!-- ==========================
+            MAIN
+    =========================== -->
 
     <main>
 
-        <section class="profile">
+        <!-- ==========================
+                PROFILE HEADER
+        =========================== -->
 
-            <h2>My Profile</h2>
+        <section class="profile-header">
+
+            <h2>
+
+                My Profile
+
+            </h2>
 
             <p>
 
-                View and update your personal information.
+                View your account information.
 
             </p>
 
-            <form action="#" method="post">
-
-                
-
-                <fieldset>
-
-                    <legend>Personal Information</legend>
-
-                    <div class="form-group">
-
-                        <label for="fullname">
-
-                            Full Name
-
-                        </label>
-
-                        <input
-                            type="text"
-                            id="fullname"
-                            name="fullname"
-                            placeholder="Enter your full name"
-                            required>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="email">
-
-                            Email Address
-
-                        </label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            required>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="phone">
-
-                            Phone Number
-
-                        </label>
-
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            placeholder="Enter your phone number"
-                            required>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="age">
-
-                            Age
-
-                        </label>
-
-                        <input
-                            type="number"
-                            id="age"
-                            name="age"
-                            min="1"
-                            max="120"
-                            required>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="gender">
-
-                            Gender
-
-                        </label>
-
-                        <select
-                            id="gender"
-                            name="gender">
-
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
-
-                        </select>
-
-                    </div>
-
-                </fieldset>
+        </section>
 
 
 
-                <!-- 
-                        Security
-                -->
+        <!-- ==========================
+                PROFILE CARD
+        =========================== -->
 
-                <fieldset>
+        <section class="profile-section">
 
-                    <legend>Security</legend>
+            <div class="profile-card">
 
-                    <div class="form-group">
+                <h3>
 
-                        <label for="new-password">
+                    User Information
 
-                            New Password
+                </h3>
 
-                        </label>
+                <hr>
 
-                        <input
-                            type="password"
-                            id="new-password"
-                            name="new-password"
-                            placeholder="Leave blank to keep current password">
+                <div class="profile-item">
 
-                    </div>
+                    <span class="profile-label">
 
-                    <div class="form-group">
+                        Full Name
 
-                        <label for="confirm-password">
+                    </span>
 
-                            Confirm Password
+                    <span
+                        id="profile-name"
+                        class="profile-value">
 
-                        </label>
+                    </span>
 
-                        <input
-                            type="password"
-                            id="confirm-password"
-                            name="confirm-password"
-                            placeholder="Confirm new password">
-
-                    </div>
-
-                </fieldset>
+                </div>
 
 
 
-                <button type="submit">
+                <div class="profile-item">
 
-                    Save Changes
+                    <span class="profile-label">
 
-                </button>
+                        Email
 
-            </form>
+                    </span>
+
+                    <span
+                        id="profile-email"
+                        class="profile-value">
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="profile-item">
+
+                    <span class="profile-label">
+
+                        Phone
+
+                    </span>
+
+                    <span
+                        id="profile-phone"
+                        class="profile-value">
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="profile-item">
+
+                    <span class="profile-label">
+
+                        Age
+
+                    </span>
+
+                    <span
+                        id="profile-age"
+                        class="profile-value">
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="profile-item">
+
+                    <span class="profile-label">
+
+                        Gender
+
+                    </span>
+
+                    <span
+                        id="profile-gender"
+                        class="profile-value">
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="profile-item">
+
+                    <span class="profile-label">
+
+                        Member Since
+
+                    </span>
+
+                    <span
+                        id="profile-created"
+                        class="profile-value">
+
+                    </span>
+
+                </div>
+
+            </div>
 
         </section>
 
@@ -228,8 +238,9 @@
 
 
 
-    
-    
+    <!-- ==========================
+            FOOTER
+    =========================== -->
 
     <footer class="footer">
 
@@ -246,6 +257,14 @@
         </p>
 
     </footer>
+
+
+
+    <!-- ==========================
+            JAVASCRIPT
+    =========================== -->
+
+    <script src="../assets/js/profile.js"></script>
 
 </body>
 

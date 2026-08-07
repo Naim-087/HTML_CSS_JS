@@ -64,98 +64,46 @@
 
     <main>
 
-        <!-- Page Header -->
+    <!-- ==========================
+            HISTORY HEADER
+    =========================== -->
 
-        <section class="history-header">
+    <section class="history-header">
 
-            <h2>Medicine History</h2>
+        <h2>
 
-            <p>
+            Medicine History
 
-                View your completed and missed medicine records.
+        </h2>
 
-            </p>
+        <p>
 
-        </section>
+            View all medicines that you have marked as taken.
 
+        </p>
 
-
-        <!-- Search & Filter -->
-
-        <section class="history-controls">
-
-            <div class="form-group">
-
-                <label for="search-history">
-
-                    Search Medicine
-
-                </label>
-
-                <input
-                    type="search"
-                    id="search-history"
-                    name="search-history"
-                    placeholder="Search medicine">
-
-            </div>
-
-            <div class="form-group">
-
-                <label for="history-status">
-
-                    Status
-
-                </label>
-
-                <select
-                    id="history-status"
-                    name="history-status">
-
-                    <option value="">All</option>
-                    <option>Taken</option>
-                    <option>Missed</option>
-
-                </select>
-
-            </div>
-
-        </section>
+    </section>
 
 
 
-        <!-- History List -->
+    <!-- ==========================
+            HISTORY LIST
+    =========================== -->
 
-        <section class="history-list">
+    <section class="history-section">
 
-            <p class="empty-state">
-
-                No medicine history available.
-
-            </p>
+        <div id="history-list">
 
             <!--
-                JavaScript will generate history cards here.
-
-                Example:
-
-                <article class="card history-card">
-
-                    <h3>Paracetamol</h3>
-
-                    <p>Status : Taken</p>
-
-                    <p>Date : 30 July 2026</p>
-
-                    <p>Time : 8:00 AM</p>
-
-                </article>
-
+                JavaScript (history.js)
+                will generate history cards here.
             -->
 
-        </section>
+        </div>
 
-    </main>
+    </section>
+
+</main>
 
 
 
@@ -178,6 +126,8 @@
         </p>
 
     </footer>
+
+    <script src="../assets/js/history.js"></script>
 
 </body>
 

@@ -3,30 +3,28 @@
 
 <head>
 
-    <!-- Basic Meta Information -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO -->
-    <meta name="description" content="Create your MediReminder account">
-    <meta name="author" content="Naim Islam">
+    <meta name="description"
+          content="Create your MediReminder account">
 
-    <!-- Title -->
+    <meta name="author"
+          content="Naim Islam">
+
     <title>MediReminder | Sign Up</title>
 
-    <!-- CSS -->
+
     <link rel="stylesheet" href="../assets/css/style.css">
 
-    <!-- Favicon -->
+
     <link rel="icon" href="../assets/icons/favicon.ico">
 
 </head>
 
 <body>
 
-    <!-- ==========================
-            HEADER
-    =========================== -->
 
     <header class="header">
 
@@ -40,11 +38,35 @@
 
             <ul class="navigation__list">
 
-                <li><a href="index.html">Home</a></li>
+                <li>
 
-                <li><a href="about.html">About</a></li>
+                    <a href="index.html">
 
-                <li><a href="login.html">Login</a></li>
+                        Home
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="about.html">
+
+                        About
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="login.html">
+
+                        Login
+
+                    </a>
+
+                </li>
 
             </ul>
 
@@ -53,16 +75,15 @@
     </header>
 
 
-
-    <!-- ==========================
-            MAIN CONTENT
-    =========================== -->
-
     <main>
 
         <section class="signup">
 
-            <h2>Create Your Account</h2>
+            <h2>
+
+                Create Your Account
+
+            </h2>
 
             <p>
 
@@ -72,17 +93,17 @@
 
 
 
-            <form id="signup-form" novalidate>
+            <form id="signup-form">
 
-                <!-- ==========================
-                        Personal Information
-                =========================== -->
+                <!-- Personal Information -->
 
                 <fieldset>
 
-                    <legend>Personal Information</legend>
+                    <legend>
 
+                        Personal Information
 
+                    </legend>
 
                     <div class="form-group">
 
@@ -95,12 +116,8 @@
                         <input
                             type="text"
                             id="full-name"
-                            name="full-name"
                             placeholder="Enter your full name"
-                            autocomplete="name"
                             required>
-
-                        <small class="error-message"></small>
 
                     </div>
 
@@ -117,12 +134,8 @@
                         <input
                             type="email"
                             id="email"
-                            name="email"
                             placeholder="Enter your email"
-                            autocomplete="email"
                             required>
-
-                        <small class="error-message"></small>
 
                     </div>
 
@@ -139,13 +152,9 @@
                         <input
                             type="tel"
                             id="phone"
-                            name="phone"
                             placeholder="Enter your phone number"
-                            autocomplete="tel"
                             maxlength="15"
                             required>
-
-                        <small class="error-message"></small>
 
                     </div>
 
@@ -162,13 +171,10 @@
                         <input
                             type="number"
                             id="age"
-                            name="age"
                             placeholder="Enter your age"
                             min="1"
                             max="120"
                             required>
-
-                        <small class="error-message"></small>
 
                     </div>
 
@@ -184,20 +190,33 @@
 
                         <select
                             id="gender"
-                            name="gender"
                             required>
 
-                            <option value="">Select Gender</option>
+                            <option value="">
 
-                            <option value="Male">Male</option>
+                                Select Gender
 
-                            <option value="Female">Female</option>
+                            </option>
 
-                            <option value="Other">Other</option>
+                            <option value="Male">
+
+                                Male
+
+                            </option>
+
+                            <option value="Female">
+
+                                Female
+
+                            </option>
+
+                            <option value="Other">
+
+                                Other
+
+                            </option>
 
                         </select>
-
-                        <small class="error-message"></small>
 
                     </div>
 
@@ -205,15 +224,15 @@
 
 
 
-                <!-- ==========================
-                        Account Information
-                =========================== -->
+                <!-- Account Information -->
 
                 <fieldset>
 
-                    <legend>Account Information</legend>
+                    <legend>
 
+                        Account Information
 
+                    </legend>
 
                     <div class="form-group">
 
@@ -226,13 +245,9 @@
                         <input
                             type="password"
                             id="password"
-                            name="password"
                             placeholder="Create a password"
-                            autocomplete="new-password"
                             minlength="8"
                             required>
-
-                        <small class="error-message"></small>
 
                     </div>
 
@@ -249,13 +264,9 @@
                         <input
                             type="password"
                             id="confirm-password"
-                            name="confirm-password"
                             placeholder="Confirm your password"
-                            autocomplete="new-password"
                             minlength="8"
                             required>
-
-                        <small class="error-message"></small>
 
                     </div>
 
@@ -263,33 +274,26 @@
 
 
 
-                <!-- ==========================
-                        Terms & Conditions
-                =========================== -->
+                <!-- Terms -->
 
-                <div class="form-group checkbox-group">
+                <div class="checkbox-group">
 
                     <label>
 
                         <input
                             type="checkbox"
                             id="terms"
-                            name="terms"
                             required>
 
                         I agree to the Terms and Conditions.
 
                     </label>
 
-                    <small class="error-message"></small>
-
                 </div>
 
 
 
-                <!-- ==========================
-                        Submit Button
-                =========================== -->
+                <!-- Submit -->
 
                 <button
                     id="signup-btn"
@@ -321,10 +325,6 @@
 
 
 
-    <!-- ==========================
-            FOOTER
-    =========================== -->
-
     <footer class="footer">
 
         <p>
@@ -347,11 +347,9 @@
             JAVASCRIPT
     =========================== -->
 
-    <script src="../assets/js/auth.js" defer></script>
+    <script src="../assets/js/auth.js"></script>
 
 </body>
 
 </html>
-
-
 

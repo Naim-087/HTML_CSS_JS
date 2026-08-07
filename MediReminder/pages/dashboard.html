@@ -3,18 +3,18 @@
 
 <head>
 
-    <!-- Basic Meta Information -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO -->
+  
     <meta name="description" content="MediReminder Dashboard">
     <meta name="author" content="Naim Islam">
 
-    <!-- Title -->
+   
     <title>MediReminder | Dashboard</title>
 
-    <!-- CSS -->
+    
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <!-- Favicon -->
@@ -24,9 +24,7 @@
 
 <body>
 
-    <!-- ==========================
-            HEADER
-    =========================== -->
+   
 
     <header class="header">
 
@@ -60,122 +58,137 @@
 
 
 
-    <!-- ==========================
-            MAIN CONTENT
-    =========================== -->
+   
 
     <main>
 
-        <!-- Dashboard Welcome -->
+    <!-- ==========================
+            DASHBOARD HEADER
+    =========================== -->
 
-        <section class="dashboard-welcome">
+    <section class="dashboard-header">
 
-            <h2>Dashboard</h2>
+        <h2 id="welcome-message">
 
-            <p>
+            Welcome Back!
 
-                Welcome to MediReminder. Manage your medicines and stay healthy.
+        </h2>
+
+        <p>
+
+            Manage your medicines and track your daily progress.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- ==========================
+            QUICK ACTIONS
+    =========================== -->
+
+    <section class="quick-actions">
+
+        <a href="add-medicine.html" class="action-card">
+
+            <span class="action-icon">💊</span>
+
+            <h3>Add Medicine</h3>
+
+        </a>
+
+        <a href="medicines.html" class="action-card">
+
+            <span class="action-icon">📋</span>
+
+            <h3>View Medicines</h3>
+
+        </a>
+
+        <a href="history.html" class="action-card">
+
+            <span class="action-icon">📜</span>
+
+            <h3>History</h3>
+
+        </a>
+
+    </section>
+
+
+
+    <!-- ==========================
+            OVERVIEW
+    =========================== -->
+
+    <section class="dashboard-stats">
+
+        <div class="stat-card">
+
+            <h3>Total Medicines</h3>
+
+            <p id="total-medicines">
+
+                0
 
             </p>
 
-        </section>
+        </div>
 
 
 
-        <!-- Statistics -->
+        <div class="stat-card">
 
-        <section class="statistics">
+            <h3>Taken Today</h3>
 
-            <h2>Overview</h2>
+            <p id="taken-medicines">
 
-            <div class="statistics-container">
+                0
 
-               <div class="card stat-card">
+            </p>
 
-                    <h3>Total Medicines</h3>
-
-                    <p>0</p>
-
-                </article>
-
-                <article class="stat-card">
-
-                    <h3>Today's Reminders</h3>
-
-                    <p>0</p>
-
-                </article>
-
-                <article class="stat-card">
-
-                    <h3>Completed Today</h3>
-
-                    <p>0</p>
-
-                </article>
-
-                <article class="stat-card">
-
-                    <h3>Completion Rate</h3>
-
-                    <p>0%</p>
-
-                </article>
-
-            </div>
-
-        </section>
+        </div>
 
 
 
-        <!-- Today's Medicines -->
+        <div class="stat-card">
 
-        <section class="today-medicines">
+            <h3>Pending</h3>
 
-            <h2>Today's Medicines</h2>
+            <p id="pending-medicines">
 
-            <div class="medicine-list">
+                0
 
-                <!-- JavaScript will insert medicine cards here -->
+            </p>
 
-            </div>
+        </div>
 
-        </section>
-
-
-
-        <!-- Upcoming Reminders -->
-
-        <section class="upcoming-reminders">
-
-            <h2>Upcoming Reminders</h2>
-
-            <div class="reminder-list">
-
-                <!-- JavaScript will insert reminders here -->
-
-            </div>
-
-        </section>
+    </section>
 
 
 
-        <!-- Recent Activity -->
+    <!-- ==========================
+            RECENT MEDICINES
+    =========================== -->
 
-        <section class="recent-activity">
+    <section class="recent-section">
 
-            <h2>Recent Activity</h2>
+        <h2>
 
-            <div class="history-list">
+            Recent Medicines
 
-                <!-- JavaScript will insert history here -->
+        </h2>
 
-            </div>
+        <div id="recent-medicine-list">
 
-        </section>
+            <!-- dashboard.js will generate cards -->
 
-    </main>
+        </div>
 
+    </section>
+
+</main>
 
 
     <!-- ==========================
@@ -197,6 +210,8 @@
         </p>
 
     </footer>
+
+    <script src="../assets/js/dashboard.js"></script>
 
 </body>
 

@@ -1,0 +1,282 @@
+/* =====================================================
+                    MEDIREMINDER
+                    BASE STYLES
+===================================================== */
+
+
+/* =====================================================
+                    CSS VARIABLES
+===================================================== */
+
+:root{
+
+    /* Primary Colors */
+
+    --primary-color:#2563EB;
+
+    --primary-dark:#1E40AF;
+
+    --primary-hover:#1D4ED8;
+
+    /* Background Colors */
+
+    --background-color:#F8FAFC;
+
+    --surface-color:#FFFFFF;
+
+    /* Text Colors */
+
+    --text-color:#1E293B;
+
+    --text-light:#64748B;
+
+    /* Border */
+
+    --border-color:#E2E8F0;
+
+    /* Status Colors */
+
+    --success-color:#22C55E;
+
+    --danger-color:#EF4444;
+
+    --warning-color:#F59E0B;
+
+    /* Shadow */
+
+    --shadow:0 4px 12px rgba(0,0,0,0.08);
+
+    /* Border Radius */
+
+    --radius:10px;
+
+    /* Transition */
+
+    --transition:0.3s ease;
+
+}
+
+
+
+/* =====================================================
+                        RESET
+===================================================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+
+
+/* =====================================================
+                    HTML & BODY
+===================================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:var(--background-color);
+
+    color:var(--text-color);
+
+    line-height:1.6;
+
+}
+
+
+
+/* =====================================================
+                    TYPOGRAPHY
+===================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    color:var(--text-color);
+
+    margin-bottom:1rem;
+
+    font-weight:700;
+
+}
+
+p{
+
+    color:var(--text-light);
+
+    margin-bottom:1rem;
+
+}
+
+
+
+/* =====================================================
+                    LINKS
+===================================================== */
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+    transition:var(--transition);
+
+}
+
+
+
+/* =====================================================
+                    LISTS
+===================================================== */
+
+ul{
+
+    list-style:none;
+
+}
+
+
+
+/* =====================================================
+                    IMAGES
+===================================================== */
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+
+
+/* =====================================================
+                    BUTTON RESET
+===================================================== */
+
+button{
+
+    font-family:inherit;
+
+    cursor:pointer;
+
+    border:none;
+
+}
+
+
+
+/* =====================================================
+                    INPUT RESET
+===================================================== */
+
+input,
+select,
+textarea,
+button{
+
+    font:inherit;
+
+}
+
+
+
+/* =====================================================
+                    CONTAINER
+===================================================== */
+
+.container{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:0 auto;
+
+}
+
+
+
+/* =====================================================
+                    MAIN
+===================================================== */
+
+main{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:40px auto;
+
+}
+
+
+
+/* =====================================================
+                    SECTIONS
+===================================================== */
+
+section{
+
+    margin-bottom:60px;
+
+}
+
+
+
+/* =====================================================
+                    ANIMATION
+===================================================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* =====================================================
+                    PAGE ANIMATION
+===================================================== */
+
+main{
+
+    animation:fadeIn .6s ease;
+
+}
+

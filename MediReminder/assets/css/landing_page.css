@@ -1,0 +1,301 @@
+/* =====================================================
+                    MEDIREMINDER
+                    LANDING PAGE
+===================================================== */
+
+
+/* =====================================================
+                    HERO SECTION
+===================================================== */
+
+.hero{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:80px 20px;
+
+}
+
+
+.hero h2{
+
+    font-size:3rem;
+
+    color:var(--primary-color);
+
+    margin-bottom:20px;
+
+}
+
+
+.hero p{
+
+    max-width:700px;
+
+    color:var(--text-light);
+
+    font-size:1.1rem;
+
+    line-height:1.8;
+
+    margin-bottom:40px;
+
+}
+
+
+/* =====================================================
+                    HERO BUTTONS
+===================================================== */
+
+.hero-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/* =====================================================
+                    PRIMARY BUTTON
+===================================================== */
+
+.btn{
+
+    display:inline-block;
+
+    padding:14px 32px;
+
+    border-radius:8px;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+
+/* =====================================================
+                    SIGNUP BUTTON
+===================================================== */
+
+.btn-primary{
+
+    background:var(--primary-color);
+
+    color:#ffffff;
+
+    border:2px solid var(--primary-color);
+
+}
+
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+    border-color:var(--primary-dark);
+
+    color:#ffffff;
+
+}
+
+
+/* =====================================================
+                    LOGIN BUTTON
+===================================================== */
+
+.btn-outline{
+
+    background:transparent;
+
+    color:var(--primary-color);
+
+    border:2px solid var(--primary-color);
+
+}
+
+
+.btn-outline:hover{
+
+    background:var(--primary-color);
+
+    color:#ffffff;
+
+}
+
+
+/* =====================================================
+                    FEATURES
+===================================================== */
+
+.features{
+
+    padding:60px 20px;
+
+    text-align:center;
+
+}
+
+
+.features h2{
+
+    color:var(--primary-color);
+
+    margin-bottom:40px;
+
+}
+
+
+/* =====================================================
+                    FEATURE GRID
+===================================================== */
+
+.feature-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+
+/* =====================================================
+                    FEATURE CARD
+===================================================== */
+
+.feature-card{
+
+    background:var(--surface-color);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    padding:30px;
+
+    transition:var(--transition);
+
+}
+
+
+.feature-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+.feature-icon{
+
+    font-size:3rem;
+
+    margin-bottom:20px;
+
+}
+
+
+.feature-card h3{
+
+    color:var(--primary-color);
+
+    margin-bottom:15px;
+
+}
+
+
+.feature-card p{
+
+    color:var(--text-light);
+
+}
+
+
+/* =====================================================
+                TECHNOLOGY SECTION
+===================================================== */
+
+.technology{
+
+    padding:60px 20px;
+
+    text-align:center;
+
+}
+
+
+.technology h2{
+
+    color:var(--primary-color);
+
+    margin-bottom:40px;
+
+}
+
+
+/* =====================================================
+                    TECH GRID
+===================================================== */
+
+.tech-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:20px;
+
+}
+
+
+/* =====================================================
+                    TECH CARD
+===================================================== */
+
+.tech-card{
+
+    background:var(--surface-color);
+
+    padding:25px;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+
+.tech-card:hover{
+
+    background:var(--primary-color);
+
+    color:#ffffff;
+
+    transform:translateY(-6px);
+
+}
+

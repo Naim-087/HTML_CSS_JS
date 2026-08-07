@@ -1,0 +1,342 @@
+/* =====================================================
+                    MEDIREMINDER
+                    FORMS
+===================================================== */
+
+
+/* =====================================================
+                    FORM PAGE
+===================================================== */
+
+.form-page{
+
+    max-width:700px;
+
+    margin:40px auto;
+
+}
+
+
+/* =====================================================
+                    FORM CONTAINER
+===================================================== */
+
+form{
+
+    background:var(--surface-color);
+
+    padding:30px;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+}
+
+
+/* =====================================================
+                    FIELDSET
+===================================================== */
+
+fieldset{
+
+    border:1px solid var(--border-color);
+
+    border-radius:var(--radius);
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* =====================================================
+                    LEGEND
+===================================================== */
+
+legend{
+
+    padding:0 10px;
+
+    color:var(--primary-color);
+
+    font-size:1.1rem;
+
+    font-weight:700;
+
+}
+
+
+/* =====================================================
+                    FORM GROUP
+===================================================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =====================================================
+                    LABEL
+===================================================== */
+
+label{
+
+    margin-bottom:8px;
+
+    color:var(--text-color);
+
+    font-weight:600;
+
+}
+
+
+/* =====================================================
+            INPUT / SELECT / TEXTAREA
+===================================================== */
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:12px 15px;
+
+    border:1px solid var(--border-color);
+
+    border-radius:8px;
+
+    outline:none;
+
+    transition:var(--transition);
+
+}
+
+
+/* =====================================================
+                    SELECT
+===================================================== */
+
+select{
+
+    background:var(--surface-color);
+
+}
+
+
+/* =====================================================
+                    TEXTAREA
+===================================================== */
+
+textarea{
+
+    resize:vertical;
+
+}
+
+
+/* =====================================================
+                    PLACEHOLDER
+===================================================== */
+
+input::placeholder,
+textarea::placeholder{
+
+    color:var(--text-light);
+
+}
+
+
+/* =====================================================
+                    FOCUS
+===================================================== */
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:var(--primary-color);
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+
+}
+
+
+/* =====================================================
+                    CHECKBOX
+===================================================== */
+
+.checkbox-group{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+}
+
+
+.checkbox-group label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:0;
+
+    font-weight:400;
+
+}
+
+
+.checkbox-group input{
+
+    width:auto;
+
+}
+
+
+/* =====================================================
+                    ERROR MESSAGE
+===================================================== */
+
+.error-message{
+
+    margin-top:5px;
+
+    color:var(--danger-color);
+
+    font-size:.85rem;
+
+}
+
+
+/* =====================================================
+                    PRIMARY BUTTON
+===================================================== */
+
+button{
+
+    width:100%;
+
+    padding:14px;
+
+    background:var(--primary-color);
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+
+button:hover{
+
+    background:var(--primary-dark);
+
+}
+
+
+/* =====================================================
+                SECONDARY BUTTON
+===================================================== */
+
+.button-secondary{
+
+    background:var(--surface-color);
+
+    color:var(--primary-color);
+
+    border:2px solid var(--primary-color);
+
+}
+
+
+.button-secondary:hover{
+
+    background:var(--primary-color);
+
+    color:#fff;
+
+}
+
+
+/* =====================================================
+                    FORM LINKS
+===================================================== */
+
+form + p{
+
+    margin-top:20px;
+
+    text-align:center;
+
+}
+
+
+form + p a{
+
+    color:var(--primary-color);
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+
+form + p a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* =====================================================
+                FORM TITLE
+===================================================== */
+
+.form-page h2{
+
+    text-align:center;
+
+    color:var(--primary-color);
+
+    margin-bottom:10px;
+
+}
+
+
+.form-page > p{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+    color:var(--text-light);
+
+}
+
