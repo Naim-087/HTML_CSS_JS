@@ -7,6 +7,15 @@
         "age": 22,
         "gender": "Male",
         "password": "12345678"
+    },
+    {
+        "id": 1786165039664,
+        "fullName": "arif ahmed",
+        "email": "arif@gmail.com",
+        "phone": "012345678911",
+        "age": 20,
+        "gender": "Male",
+        "password": "87654321",
+        "createdAt": "2026-08-08T04:57:19.664Z"
     }
 ]
-

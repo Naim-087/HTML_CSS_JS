@@ -158,6 +158,151 @@ async function handleRoutes(request, response) {
 
     }
 
+
+
+
+
+    /* =================================================
+                    LOGIN
+================================================= */
+
+if (
+
+    request.method === "POST" &&
+
+    request.url === "/login"
+
+) {
+
+    try {
+
+        const loginData = await parser.parseRequestBody(request);
+
+        const users = database.readData(
+
+            database.USERS_FILE
+
+        );
+
+        /* =========================================
+                FIND USER
+        ========================================= */
+
+        const user = users.find(function (item) {
+
+            return (
+
+                item.email === loginData.email &&
+
+                item.password === loginData.password
+
+            );
+
+        });
+
+        /* =========================================
+                INVALID LOGIN
+        ========================================= */
+
+        if (!user) {
+
+            response.writeHead(401, {
+
+                "Content-Type": "application/json"
+
+            });
+
+            response.end(
+
+                JSON.stringify({
+
+                    success: false,
+
+                    message: "Invalid email or password."
+
+                })
+
+            );
+
+            return;
+
+        }
+
+        /* =========================================
+                LOGIN SUCCESS
+        ========================================= */
+
+        response.writeHead(200, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: true,
+
+                message: "Login Successful!",
+
+                user: {
+
+                    id: user.id,
+
+                    fullName: user.fullName,
+
+                    email: user.email,
+
+                    phone: user.phone,
+
+                    age: user.age,
+
+                    gender: user.gender,
+
+                    createdAt: user.createdAt
+
+                }
+
+            })
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error("Login Error:", error);
+
+        response.writeHead(400, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: false,
+
+                message: "Invalid Request"
+
+            })
+
+        );
+
+    }
+
+    return;
+
+}
+
+
+
+
+
+
     /* =================================================
                     ROUTE NOT FOUND
     ================================================= */

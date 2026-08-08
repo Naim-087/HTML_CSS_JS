@@ -121,10 +121,10 @@ function initializeLogin() {
 
 
 /* =====================================================
-                HANDLE SIGNUP
+                    HANDLE SIGNUP
 ===================================================== */
 
-function handleSignup(event) {
+async function handleSignup(event) {
 
     event.preventDefault();
 
@@ -138,19 +138,82 @@ function handleSignup(event) {
 
     }
 
-    if (!saveUser(user)) {
+    try {
 
-        return;
+        const response = await fetch(
+
+            "http://localhost:3000/signup",
+
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                    id: user.id,
+
+                    fullName: user.fullName,
+
+                    email: user.email,
+
+                    phone: user.phone,
+
+                    age: user.age,
+
+                    gender: user.gender,
+
+                    password: user.password,
+
+                    createdAt: user.createdAt
+
+                })
+
+            }
+
+        );
+
+        const result = await response.json();
+
+        console.log("Backend Response:", result);
+
+        if (!response.ok) {
+
+            alert(result.message);
+
+            return;
+
+        }
+
+        alert("Account Created Successfully!");
+
+        signupForm.reset();
+
+        window.location.href = "login.html";
 
     }
 
-    signupForm.reset();
+    catch (error) {
 
-    alert("Account Created Successfully!");
+        console.error("Signup Error:", error);
 
-    window.location.href = "login.html";
+        alert(
+
+            "Unable to connect to the server. " +
+
+            "Please make sure the Node.js server is running."
+
+        );
+
+    }
 
 }
+
 
 
 
