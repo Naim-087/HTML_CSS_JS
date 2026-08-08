@@ -8,39 +8,46 @@ const fs = require("node:fs");
 
 const path = require("node:path");
 
+
 /* =====================================================
-                    DATABASE FILE PATHS
+                DATABASE FILE PATHS
 ===================================================== */
 
-const USERS_FILE = path.join(
+const DATA_FOLDER = path.join(
 
     __dirname,
 
-    "data",
+    "data"
+
+);
+
+
+const USERS_FILE = path.join(
+
+    DATA_FOLDER,
 
     "users.json"
 
 );
 
+
 const MEDICINES_FILE = path.join(
 
-    __dirname,
+    DATA_FOLDER,
 
-    "data",
-
-    "medicines.json"
+    "medicine.json"
 
 );
 
+
 const HISTORY_FILE = path.join(
 
-    __dirname,
-
-    "data",
+    DATA_FOLDER,
 
     "history.json"
 
 );
+
 
 /* =====================================================
                     READ DATA
@@ -56,9 +63,10 @@ function readData(filePath) {
 
     );
 
-    return JSON.parse(data);
+    return JSON.parse(data || "[]");
 
 }
+
 
 /* =====================================================
                     WRITE DATA
@@ -78,8 +86,9 @@ function writeData(filePath, data) {
 
 }
 
+
 /* =====================================================
-                    EXPORT MODULE
+                EXPORT MODULE
 ===================================================== */
 
 module.exports = {
@@ -95,4 +104,3 @@ module.exports = {
     writeData
 
 };
-

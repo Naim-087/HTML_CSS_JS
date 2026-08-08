@@ -303,6 +303,174 @@ if (
 
 
 
+
+/* =====================================================
+                    GET MEDICINES
+===================================================== */
+
+if (
+
+    request.method === "GET" &&
+
+    request.url === "/medicines"
+
+) {
+
+    try {
+
+        const medicines = database.readData(
+
+            database.MEDICINES_FILE
+
+        );
+
+        response.writeHead(200, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: true,
+
+                medicines: medicines
+
+            })
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error("Get Medicines Error:", error);
+
+        response.writeHead(500, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: false,
+
+                message: "Unable to load medicines."
+
+            })
+
+        );
+
+    }
+
+    return;
+
+}
+
+
+
+
+
+
+
+/* =====================================================
+                    ADD MEDICINE
+===================================================== */
+
+if (
+
+    request.method === "POST" &&
+
+    request.url === "/medicines"
+
+) {
+
+    try {
+
+        const medicine = await parser.parseRequestBody(
+
+            request
+
+        );
+
+        const medicines = database.readData(
+
+            database.MEDICINES_FILE
+
+        );
+
+        medicines.push(medicine);
+
+        database.writeData(
+
+            database.MEDICINES_FILE,
+
+            medicines
+
+        );
+
+        response.writeHead(201, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: true,
+
+                message: "Medicine Added Successfully.",
+
+                medicine: medicine
+
+            })
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error("Add Medicine Error:", error);
+
+        response.writeHead(400, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: false,
+
+                message: "Invalid Medicine Data."
+
+            })
+
+        );
+
+    }
+
+    return;
+
+}
+
+
+
+
+
+
+
+
     /* =================================================
                     ROUTE NOT FOUND
     ================================================= */

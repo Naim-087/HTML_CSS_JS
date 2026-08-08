@@ -412,14 +412,12 @@ function saveUsers(users) {
 
 
 
-
-
-
 /* =====================================================
-                HANDLE LOGIN
+                    HANDLE LOGIN
 ===================================================== */
 
-function handleLogin(event) {
+async function handleLogin(event) 
+{
 
     event.preventDefault();
 
@@ -433,24 +431,77 @@ function handleLogin(event) {
 
     }
 
-    const user = authenticateUser(loginData);
+    try {
 
-    if (!user) {
+        const response = await fetch(
 
-        alert("Invalid email or password.");
+            "http://localhost:3000/login",
 
-        return;
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                    email: loginData.email,
+
+                    password: loginData.password
+
+                })
+
+            }
+
+        );
+
+        const result = await response.json();
+
+        console.log("Backend Response:", result);
+
+        /* =============================================
+                    INVALID LOGIN
+        ============================================= */
+
+        if (!response.ok) {
+
+            alert(result.message);
+
+            return;
+
+        }
+
+        /* =============================================
+                    CREATE SESSION
+        ============================================= */
+
+        createSession(result.user);
+
+        alert("Login Successful!");
+
+        window.location.href = "dashboard.html";
 
     }
 
-    createSession(user);
+    catch (error) {
 
-    alert("Login Successful!");
+        console.error("Login Error:", error);
 
-    window.location.href = "dashboard.html";
+        alert(
+
+            "Unable to connect to the server. " +
+
+            "Please make sure the Node.js server is running."
+
+        );
+
+    }
 
 }
-
 
 
 
@@ -494,37 +545,6 @@ function validateLogin(loginData) {
     }
 
     return true;
-
-}
-
-
-
-
-
-
-
-
-/* =====================================================
-                AUTHENTICATE USER
-===================================================== */
-
-function authenticateUser(loginData) {
-
-    const users = getUsers();
-
-    const user = users.find(existingUser => {
-
-        return (
-
-            existingUser.email === loginData.email &&
-
-            existingUser.password === loginData.password
-
-        );
-
-    });
-
-    return user || null;
 
 }
 
