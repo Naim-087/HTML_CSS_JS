@@ -2,48 +2,86 @@
 
 /* =====================================================
                     MEDIREMINDER
-                  MEDICINE MODULE
+                    MEDICINE MODULE
 ===================================================== */
 
 console.log("Medicine Module Loaded");
+
 
 /* =====================================================
                     DOM ELEMENTS
 ===================================================== */
 
-const medicineForm = document.getElementById("medicine-form");
-const medicineList = document.getElementById("medicine-list");
+const medicineForm = document.getElementById(
+    "medicine-form"
+);
 
-const medicineNameInput = document.getElementById("medicine-name");
-const dosageInput = document.getElementById("dosage");
-const timeInput = document.getElementById("time");
-const frequencyInput = document.getElementById("frequency");
+const medicineList = document.getElementById(
+    "medicine-list"
+);
+
+const medicineNameInput = document.getElementById(
+    "medicine-name"
+);
+
+const dosageInput = document.getElementById(
+    "dosage"
+);
+
+const timeInput = document.getElementById(
+    "time"
+);
+
+const frequencyInput = document.getElementById(
+    "frequency"
+);
 
 
 /* =====================================================
-                APPLICATION START
+                    BACKEND URL
+===================================================== */
+
+const API_URL = "http://localhost:3000";
+
+
+/* =====================================================
+                    APPLICATION START
 ===================================================== */
 
 initializeMedicine();
 
 
 /* =====================================================
-                INITIALIZE MODULE
+                    INITIALIZE
 ===================================================== */
 
 function initializeMedicine() {
 
-    // Add Medicine Page
+    console.log("Medicine Module Initialized");
+
+
+    /* =============================================
+                    ADD MEDICINE PAGE
+    ============================================= */
 
     if (medicineForm) {
 
         console.log("Add Medicine Page Detected");
 
-        medicineForm.addEventListener("submit", handleMedicine);
+        medicineForm.addEventListener(
+
+            "submit",
+
+            handleMedicine
+
+        );
 
     }
 
-    // Medicines Page
+
+    /* =============================================
+                    MEDICINES PAGE
+    ============================================= */
 
     if (medicineList) {
 
@@ -57,14 +95,22 @@ function initializeMedicine() {
 
 
 /* =====================================================
-                HANDLE MEDICINE
+                    HANDLE MEDICINE
 ===================================================== */
 
-function handleMedicine(event) {
+async function handleMedicine(event) {
 
     event.preventDefault();
 
+    console.log("Add Medicine Button Clicked");
+
+
     const medicine = getMedicineData();
+
+
+    /* =============================================
+                    VALIDATION
+    ============================================= */
 
     if (!validateMedicine(medicine)) {
 
@@ -72,17 +118,97 @@ function handleMedicine(event) {
 
     }
 
-    saveMedicine(medicine);
 
-    alert("Medicine Added Successfully!");
+    try {
 
-    medicineForm.reset();
+        const response = await fetch(
+
+            `${API_URL}/medicines`,
+
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type": "application/json",
+
+                    "Accept": "application/json"
+
+                },
+
+                body: JSON.stringify(medicine)
+
+            }
+
+        );
+
+
+        const result = await response.json();
+
+
+        console.log(
+
+            "Backend Response:",
+
+            result
+
+        );
+
+
+        /* =========================================
+                    BACKEND ERROR
+        ========================================= */
+
+        if (!response.ok) {
+
+            alert(result.message);
+
+            return;
+
+        }
+
+
+        /* =========================================
+                    SUCCESS
+        ========================================= */
+
+        alert(
+
+            "Medicine Added Successfully!"
+
+        );
+
+
+        medicineForm.reset();
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Add Medicine Error:",
+
+            error
+
+        );
+
+        alert(
+
+            "Unable to connect to the server. " +
+
+            "Please make sure the Node.js server is running."
+
+        );
+
+    }
 
 }
 
 
 /* =====================================================
-                GET MEDICINE DATA
+                    GET MEDICINE DATA
 ===================================================== */
 
 function getMedicineData() {
@@ -107,7 +233,7 @@ function getMedicineData() {
 
 
 /* =====================================================
-                VALIDATE MEDICINE
+                    VALIDATE MEDICINE
 ===================================================== */
 
 function validateMedicine(medicine) {
@@ -124,7 +250,11 @@ function validateMedicine(medicine) {
 
     ) {
 
-        alert("Please fill in all fields.");
+        alert(
+
+            "Please fill in all fields."
+
+        );
 
         return false;
 
@@ -136,69 +266,93 @@ function validateMedicine(medicine) {
 
 
 /* =====================================================
-                GET MEDICINES
+                    GET MEDICINES
 ===================================================== */
 
-function getMedicines() {
+async function getMedicines() {
 
-    return JSON.parse(
+    try {
 
-        localStorage.getItem("medireminderMedicines")
+        const response = await fetch(
 
-    ) || [];
+            `${API_URL}/medicines`
+
+        );
+
+
+        const result = await response.json();
+
+
+        console.log(
+
+            "Medicines Response:",
+
+            result
+
+        );
+
+
+        if (!response.ok) {
+
+            alert(result.message);
+
+            return [];
+
+        }
+
+
+        return result.medicines || [];
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Get Medicines Error:",
+
+            error
+
+        );
+
+        alert(
+
+            "Unable to connect to the server."
+
+        );
+
+        return [];
+
+    }
 
 }
 
 
 /* =====================================================
-                SAVE MEDICINES
+                    DISPLAY MEDICINES
 ===================================================== */
 
-function saveMedicines(medicines) {
+async function displayMedicines() {
 
-    localStorage.setItem(
+    const medicines = await getMedicines();
 
-        "medireminderMedicines",
-
-        JSON.stringify(medicines)
-
-    );
-
-}
-
-
-/* =====================================================
-                SAVE MEDICINE
-===================================================== */
-
-function saveMedicine(medicine) {
-
-    const medicines = getMedicines();
-
-    medicines.push(medicine);
-
-    saveMedicines(medicines);
-
-    console.log("Medicine Saved");
-
-}
-
-
-/* =====================================================
-                DISPLAY MEDICINES
-===================================================== */
-
-function displayMedicines() {
-
-    const medicines = getMedicines();
 
     medicineList.innerHTML = "";
+
+
+    /* =============================================
+                    EMPTY STATE
+    ============================================= */
 
     if (medicines.length === 0) {
 
         medicineList.innerHTML = `
 
-            <p>No medicines added yet.</p>
+            <p class="empty-state">
+
+                No medicines added yet.
+
+            </p>
 
         `;
 
@@ -206,21 +360,54 @@ function displayMedicines() {
 
     }
 
+
+    /* =============================================
+                    DISPLAY CARDS
+    ============================================= */
+
     medicines.forEach(function (medicine) {
 
         medicineList.innerHTML += `
 
-            <div class="medicine-card">
+            <article class="medicine-card">
 
-                <h3>${medicine.medicineName}</h3>
+                <h3>
 
-                <p><strong>Dosage:</strong> ${medicine.dosage}</p>
+                    ${medicine.medicineName}
 
-                <p><strong>Time:</strong> ${medicine.time}</p>
+                </h3>
 
-                <p><strong>Frequency:</strong> ${medicine.frequency}</p>
+                <p>
 
-                <p><strong>Status:</strong> ${medicine.status}</p>
+                    <strong>Dosage:</strong>
+
+                    ${medicine.dosage}
+
+                </p>
+
+                <p>
+
+                    <strong>Time:</strong>
+
+                    ${medicine.time}
+
+                </p>
+
+                <p>
+
+                    <strong>Frequency:</strong>
+
+                    ${medicine.frequency}
+
+                </p>
+
+                <p>
+
+                    <strong>Status:</strong>
+
+                    ${medicine.status}
+
+                </p>
 
                 <div class="medicine-actions">
 
@@ -242,7 +429,7 @@ function displayMedicines() {
 
                 </div>
 
-            </div>
+            </article>
 
         `;
 
@@ -251,121 +438,289 @@ function displayMedicines() {
 }
 
 
-/* =====================================================
-                MARK AS TAKEN
-===================================================== */
-
-function markAsTaken(id) {
-
-    const medicines = getMedicines();
-
-    medicines.forEach(function (medicine) {
-
-        if (medicine.id === id) {
-
-            if (medicine.status === "Pending") {
-
-                medicine.status = "Taken";
-
-                saveHistory(medicine);
-
-            }
-
-        }
-
-    });
-
-    saveMedicines(medicines);
-
-    displayMedicines();
-
-}
-
 
 /* =====================================================
-                DELETE MEDICINE
+                    DELETE MEDICINE
 ===================================================== */
 
-function deleteMedicine(id) {
+async function deleteMedicine(id) {
 
-    const medicines = getMedicines();
+    const confirmDelete = confirm(
 
-    const updatedMedicines = medicines.filter(function (medicine) {
-
-        return medicine.id !== id;
-
-    });
-
-    saveMedicines(updatedMedicines);
-
-    displayMedicines();
-
-}
-
-
-
-/* =====================================================
-                GET HISTORY
-===================================================== */
-
-function getHistory() {
-
-    return JSON.parse(
-
-        localStorage.getItem("medireminderHistory")
-
-    ) || [];
-
-}
-
-
-
-/* =====================================================
-                SAVE HISTORIES
-===================================================== */
-
-function saveHistories(histories) {
-
-    localStorage.setItem(
-
-        "medireminderHistory",
-
-        JSON.stringify(histories)
+        "Are you sure you want to delete this medicine?"
 
     );
 
+
+    if (!confirmDelete) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response = await fetch(
+
+            `${API_URL}/medicines/${id}`,
+
+            {
+
+                method: "DELETE"
+
+            }
+
+        );
+
+
+        const result = await response.json();
+
+
+        console.log(
+
+            "Delete Response:",
+
+            result
+
+        );
+
+
+        /* =============================================
+                    BACKEND ERROR
+        ============================================= */
+
+        if (!response.ok) {
+
+            alert(result.message);
+
+            return;
+
+        }
+
+
+        /* =============================================
+                    SUCCESS
+        ============================================= */
+
+        alert(
+
+            "Medicine deleted successfully."
+
+        );
+
+
+        /* =============================================
+                    REFRESH MEDICINE LIST
+        ============================================= */
+
+        displayMedicines();
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Delete Medicine Error:",
+
+            error
+
+        );
+
+        alert(
+
+            "Unable to connect to the server."
+
+        );
+
+    }
+
 }
+
 
 
 
 /* =====================================================
-                SAVE HISTORY
+                    MARK AS TAKEN
 ===================================================== */
 
-function saveHistory(medicine) {
+async function markAsTaken(id) {
 
-    const histories = getHistory();
+    const confirmTaken = confirm(
 
-    histories.push({
+        "Mark this medicine as taken?"
 
-        id: Date.now(),
+    );
 
-        medicineName: medicine.medicineName,
 
-        dosage: medicine.dosage,
+    if (!confirmTaken) {
 
-        time: medicine.time,
+        return;
 
-        frequency: medicine.frequency,
+    }
 
-        status: medicine.status,
 
-        completedAt: new Date().toLocaleString()
+    try {
 
-    });
+        /* =============================================
+                    FIND MEDICINE
+        ============================================= */
 
-    saveHistories(histories);
+        const medicines = await getMedicines();
+
+        const medicine = medicines.find(
+
+            function (item) {
+
+                return String(item.id) === String(id);
+
+            }
+
+        );
+
+
+        if (!medicine) {
+
+            alert("Medicine not found.");
+
+            return;
+
+        }
+
+
+        /* =============================================
+                    UPDATE MEDICINE
+        ============================================= */
+
+        const updateResponse = await fetch(
+
+            `${API_URL}/medicines/${id}`,
+
+            {
+
+                method: "PUT",
+
+                headers: {
+
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                    status: "Taken",
+
+                    takenAt: new Date().toISOString()
+
+                })
+
+            }
+
+        );
+
+
+        const updateResult =
+
+            await updateResponse.json();
+
+
+        if (!updateResponse.ok) {
+
+            alert(updateResult.message);
+
+            return;
+
+        }
+
+
+        /* =============================================
+                    CREATE HISTORY RECORD
+        ============================================= */
+
+        const historyRecord = {
+
+            medicineId: medicine.id,
+
+            medicineName: medicine.medicineName,
+
+            dosage: medicine.dosage,
+
+            scheduledTime: medicine.time,
+
+            status: "Taken",
+
+            takenAt: new Date().toISOString()
+
+        };
+
+
+        const historyResponse = await fetch(
+
+            `${API_URL}/history`,
+
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify(historyRecord)
+
+            }
+
+        );
+
+
+        const historyResult =
+
+            await historyResponse.json();
+
+
+        if (!historyResponse.ok) {
+
+            alert(historyResult.message);
+
+            return;
+
+        }
+
+
+        /* =============================================
+                    SUCCESS
+        ============================================= */
+
+        alert(
+
+            "Medicine marked as taken."
+
+        );
+
+
+        displayMedicines();
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Mark as Taken Error:",
+
+            error
+
+        );
+
+        alert(
+
+            "Unable to connect to the server."
+
+        );
+
+    }
 
 }
-
-

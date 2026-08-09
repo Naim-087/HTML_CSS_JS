@@ -303,7 +303,6 @@ if (
 
 
 
-
 /* =====================================================
                     GET MEDICINES
 ===================================================== */
@@ -346,7 +345,13 @@ if (
 
     catch (error) {
 
-        console.error("Get Medicines Error:", error);
+        console.error(
+
+            "Get Medicines Error:",
+
+            error
+
+        );
 
         response.writeHead(500, {
 
@@ -371,11 +376,6 @@ if (
     return;
 
 }
-
-
-
-
-
 
 
 /* =====================================================
@@ -404,7 +404,31 @@ if (
 
         );
 
+
+        /* =============================================
+                    ADD ID IF NEEDED
+        ============================================= */
+
+        if (!medicine.id) {
+
+            medicine.id = Date.now();
+
+        }
+
+
+        /* =============================================
+                    DEFAULT STATUS
+        ============================================= */
+
+        if (!medicine.status) {
+
+            medicine.status = "Pending";
+
+        }
+
+
         medicines.push(medicine);
+
 
         database.writeData(
 
@@ -413,6 +437,7 @@ if (
             medicines
 
         );
+
 
         response.writeHead(201, {
 
@@ -438,7 +463,13 @@ if (
 
     catch (error) {
 
-        console.error("Add Medicine Error:", error);
+        console.error(
+
+            "Add Medicine Error:",
+
+            error
+
+        );
 
         response.writeHead(400, {
 
@@ -464,6 +495,537 @@ if (
 
 }
 
+
+
+
+
+
+
+/* =====================================================
+                    DELETE MEDICINE
+===================================================== */
+
+if (
+
+    request.method === "DELETE" &&
+
+    request.url.startsWith("/medicines/")
+
+) {
+
+    try {
+
+        /* =============================================
+                    GET MEDICINE ID
+        ============================================= */
+
+        const medicineId = request.url.split("/")[2];
+
+
+        /* =============================================
+                    READ MEDICINES
+        ============================================= */
+
+        const medicines = database.readData(
+
+            database.MEDICINES_FILE
+
+        );
+
+
+        /* =============================================
+                    FIND MEDICINE
+        ============================================= */
+
+        const medicineExists = medicines.some(
+
+            function (medicine) {
+
+                return String(medicine.id) === medicineId;
+
+            }
+
+        );
+
+
+        if (!medicineExists) {
+
+            response.writeHead(404, {
+
+                "Content-Type": "application/json"
+
+            });
+
+            response.end(
+
+                JSON.stringify({
+
+                    success: false,
+
+                    message: "Medicine not found."
+
+                })
+
+            );
+
+            return;
+
+        }
+
+
+        /* =============================================
+                    REMOVE MEDICINE
+        ============================================= */
+
+        const updatedMedicines = medicines.filter(
+
+            function (medicine) {
+
+                return String(medicine.id) !== medicineId;
+
+            }
+
+        );
+
+
+        /* =============================================
+                    SAVE DATA
+        ============================================= */
+
+        database.writeData(
+
+            database.MEDICINES_FILE,
+
+            updatedMedicines
+
+        );
+
+
+        /* =============================================
+                    SUCCESS RESPONSE
+        ============================================= */
+
+        response.writeHead(200, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: true,
+
+                message: "Medicine deleted successfully."
+
+            })
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Delete Medicine Error:",
+
+            error
+
+        );
+
+        response.writeHead(500, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: false,
+
+                message: "Unable to delete medicine."
+
+            })
+
+        );
+
+    }
+
+    return;
+
+}
+
+
+
+
+
+/* =====================================================
+                    UPDATE MEDICINE
+===================================================== */
+
+if (
+
+    request.method === "PUT" &&
+
+    request.url.startsWith("/medicines/")
+
+) {
+
+    try {
+
+        /* =============================================
+                    GET MEDICINE ID
+        ============================================= */
+
+        const medicineId = request.url.split("/")[2];
+
+
+        /* =============================================
+                    READ MEDICINES
+        ============================================= */
+
+        const medicines = database.readData(
+
+            database.MEDICINES_FILE
+
+        );
+
+
+        /* =============================================
+                    FIND MEDICINE
+        ============================================= */
+
+        const medicineIndex = medicines.findIndex(
+
+            function (medicine) {
+
+                return String(medicine.id) === medicineId;
+
+            }
+
+        );
+
+
+        /* =============================================
+                    MEDICINE NOT FOUND
+        ============================================= */
+
+        if (medicineIndex === -1) {
+
+            response.writeHead(404, {
+
+                "Content-Type": "application/json"
+
+            });
+
+            response.end(
+
+                JSON.stringify({
+
+                    success: false,
+
+                    message: "Medicine not found."
+
+                })
+
+            );
+
+            return;
+
+        }
+
+
+        /* =============================================
+                    GET UPDATE DATA
+        ============================================= */
+
+        const updateData = await parser.parseRequestBody(
+
+            request
+
+        );
+
+
+        /* =============================================
+                    UPDATE MEDICINE
+        ============================================= */
+
+        medicines[medicineIndex] = {
+
+            ...medicines[medicineIndex],
+
+            ...updateData,
+
+            id: medicines[medicineIndex].id
+
+        };
+
+
+        /* =============================================
+                    SAVE DATA
+        ============================================= */
+
+        database.writeData(
+
+            database.MEDICINES_FILE,
+
+            medicines
+
+        );
+
+
+        /* =============================================
+                    SUCCESS
+        ============================================= */
+
+        response.writeHead(200, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: true,
+
+                message: "Medicine updated successfully.",
+
+                medicine: medicines[medicineIndex]
+
+            })
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Update Medicine Error:",
+
+            error
+
+        );
+
+        response.writeHead(400, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: false,
+
+                message: "Unable to update medicine."
+
+            })
+
+        );
+
+    }
+
+    return;
+
+}
+
+
+
+
+
+
+/* =====================================================
+                    GET HISTORY
+===================================================== */
+
+if (
+
+    request.method === "GET" &&
+
+    request.url === "/history"
+
+) {
+
+    try {
+
+        const history = database.readData(
+
+            database.HISTORY_FILE
+
+        );
+
+        response.writeHead(200, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: true,
+
+                history: history
+
+            })
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Get History Error:",
+
+            error
+
+        );
+
+        response.writeHead(500, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: false,
+
+                message: "Unable to load history."
+
+            })
+
+        );
+
+    }
+
+    return;
+
+}
+
+
+/* =====================================================
+                    ADD HISTORY
+===================================================== */
+
+if (
+
+    request.method === "POST" &&
+
+    request.url === "/history"
+
+) {
+
+    try {
+
+        const historyRecord =
+
+            await parser.parseRequestBody(request);
+
+
+        const history = database.readData(
+
+            database.HISTORY_FILE
+
+        );
+
+
+        /* =============================================
+                    CREATE ID
+        ============================================= */
+
+        if (!historyRecord.id) {
+
+            historyRecord.id = Date.now();
+
+        }
+
+
+        /* =============================================
+                    ADD HISTORY
+        ============================================= */
+
+        history.push(historyRecord);
+
+
+        database.writeData(
+
+            database.HISTORY_FILE,
+
+            history
+
+        );
+
+
+        response.writeHead(201, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: true,
+
+                message: "History record added successfully.",
+
+                history: historyRecord
+
+            })
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Add History Error:",
+
+            error
+
+        );
+
+        response.writeHead(400, {
+
+            "Content-Type": "application/json"
+
+        });
+
+        response.end(
+
+            JSON.stringify({
+
+                success: false,
+
+                message: "Invalid history data."
+
+            })
+
+        );
+
+    }
+
+    return;
+
+}
 
 
 

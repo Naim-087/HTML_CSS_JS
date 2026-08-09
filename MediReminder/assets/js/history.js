@@ -7,11 +7,43 @@
 
 console.log("History Module Loaded");
 
+
 /* =====================================================
                     DOM ELEMENTS
 ===================================================== */
 
-const historyList = document.getElementById("history-list");
+const historyList = document.querySelector(
+
+    ".history-list"
+
+);
+
+const searchHistoryInput = document.getElementById(
+
+    "search-history"
+
+);
+
+const historyStatusSelect = document.getElementById(
+
+    "history-status"
+
+);
+
+
+/* =====================================================
+                    BACKEND URL
+===================================================== */
+
+const API_URL = "http://localhost:3000";
+
+
+/* =====================================================
+                    HISTORY DATA
+===================================================== */
+
+let historyRecords = [];
+
 
 /* =====================================================
                     APPLICATION START
@@ -19,11 +51,19 @@ const historyList = document.getElementById("history-list");
 
 initializeHistory();
 
+
 /* =====================================================
                     INITIALIZE
 ===================================================== */
 
 function initializeHistory() {
+
+    console.log(
+
+        "History Module Initialized"
+
+    );
+
 
     if (!historyList) {
 
@@ -31,37 +71,136 @@ function initializeHistory() {
 
     }
 
-    console.log("History Page Detected");
 
-    displayHistory();
+    loadHistory();
+
+
+    /* =============================================
+                    SEARCH
+    ============================================= */
+
+    if (searchHistoryInput) {
+
+        searchHistoryInput.addEventListener(
+
+            "input",
+
+            filterHistory
+
+        );
+
+    }
+
+
+    /* =============================================
+                    STATUS FILTER
+    ============================================= */
+
+    if (historyStatusSelect) {
+
+        historyStatusSelect.addEventListener(
+
+            "change",
+
+            filterHistory
+
+        );
+
+    }
 
 }
+
 
 /* =====================================================
                     GET HISTORY
 ===================================================== */
 
-function getHistory() {
+async function getHistory() {
 
-    return JSON.parse(
+    try {
 
-        localStorage.getItem("medireminderHistory")
+        const response = await fetch(
 
-    ) || [];
+            `${API_URL}/history`
+
+        );
+
+
+        const result = await response.json();
+
+
+        console.log(
+
+            "History Response:",
+
+            result
+
+        );
+
+
+        if (!response.ok) {
+
+            alert(result.message);
+
+            return [];
+
+        }
+
+
+        return result.history || [];
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Get History Error:",
+
+            error
+
+        );
+
+        alert(
+
+            "Unable to connect to the server."
+
+        );
+
+        return [];
+
+    }
 
 }
+
+
+/* =====================================================
+                    LOAD HISTORY
+===================================================== */
+
+async function loadHistory() {
+
+    historyRecords = await getHistory();
+
+    displayHistory(historyRecords);
+
+}
+
 
 /* =====================================================
                     DISPLAY HISTORY
 ===================================================== */
 
-function displayHistory() {
-
-    const histories = getHistory();
+function displayHistory(records) {
 
     historyList.innerHTML = "";
 
-    if (histories.length === 0) {
+
+    /* =============================================
+                    EMPTY STATE
+    ============================================= */
+
+    if (records.length === 0) {
 
         historyList.innerHTML = `
 
@@ -77,23 +216,44 @@ function displayHistory() {
 
     }
 
-    histories.reverse().forEach(function (history) {
+
+    /* =============================================
+                    HISTORY CARDS
+    ============================================= */
+
+    records.forEach(function (record) {
 
         historyList.innerHTML += `
 
-            <article class="history-card">
+            <article class="card history-card">
 
                 <h3>
 
-                    💊 ${history.medicineName}
+                    ${record.medicineName}
 
                 </h3>
 
                 <p>
 
+                    <strong>Status:</strong>
+
+                    ${record.status}
+
+                </p>
+
+                <p>
+
                     <strong>Dosage:</strong>
 
-                    ${history.dosage}
+                    ${record.dosage}
+
+                </p>
+
+                <p>
+
+                    <strong>Date:</strong>
+
+                    ${formatDate(record.takenAt)}
 
                 </p>
 
@@ -101,31 +261,7 @@ function displayHistory() {
 
                     <strong>Time:</strong>
 
-                    ${history.time}
-
-                </p>
-
-                <p>
-
-                    <strong>Frequency:</strong>
-
-                    ${history.frequency}
-
-                </p>
-
-                <p>
-
-                    <strong>Status:</strong>
-
-                    ${history.status}
-
-                </p>
-
-                <p>
-
-                    <strong>Completed:</strong>
-
-                    ${history.completedAt}
+                    ${formatTime(record.takenAt)}
 
                 </p>
 
@@ -136,3 +272,125 @@ function displayHistory() {
     });
 
 }
+
+
+/* =====================================================
+                    FILTER HISTORY
+===================================================== */
+
+function filterHistory() {
+
+    const searchValue =
+
+        searchHistoryInput
+
+            ? searchHistoryInput.value
+
+                .trim()
+
+                .toLowerCase()
+
+            : "";
+
+
+    const statusValue =
+
+        historyStatusSelect
+
+            ? historyStatusSelect.value
+
+            : "";
+
+
+    const filteredRecords = historyRecords.filter(
+
+        function (record) {
+
+            const medicineName =
+
+                record.medicineName
+
+                    .toLowerCase();
+
+
+            const matchesSearch =
+
+                medicineName.includes(
+
+                    searchValue
+
+                );
+
+
+            const matchesStatus =
+
+                !statusValue ||
+
+                record.status === statusValue;
+
+
+            return (
+
+                matchesSearch &&
+
+                matchesStatus
+
+            );
+
+        }
+
+    );
+
+
+    displayHistory(filteredRecords);
+
+}
+
+
+/* =====================================================
+                    FORMAT DATE
+===================================================== */
+
+function formatDate(date) {
+
+    return new Date(date).toLocaleDateString(
+
+        "en-GB",
+
+        {
+
+            day: "2-digit",
+
+            month: "long",
+
+            year: "numeric"
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+                    FORMAT TIME
+===================================================== */
+
+function formatTime(date) {
+
+    return new Date(date).toLocaleTimeString(
+
+        "en-US",
+
+        {
+
+            hour: "numeric",
+
+            minute: "2-digit"
+
+        }
+
+    );
+
+}
+
