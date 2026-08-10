@@ -2,7 +2,7 @@
 
 /* =====================================================
                     MEDIREMINDER
-                  DASHBOARD MODULE
+                    DASHBOARD MODULE
 ===================================================== */
 
 console.log("Dashboard Module Loaded");
@@ -12,36 +12,75 @@ console.log("Dashboard Module Loaded");
                     DOM ELEMENTS
 ===================================================== */
 
-const welcomeMessage = document.getElementById("welcome-message");
+const welcomeMessage = document.getElementById(
+    "welcome-message"
+);
 
-const totalMedicines = document.getElementById("total-medicines");
+const totalMedicinesElement = document.getElementById(
+    "total-medicines"
+);
 
-const recentMedicineList = document.getElementById("recent-medicine-list");
+const takenMedicinesElement = document.getElementById(
+    "taken-medicines"
+);
 
+const pendingMedicinesElement = document.getElementById(
+    "pending-medicines"
+);
+
+const recentMedicineList = document.getElementById(
+    "recent-medicine-list"
+);
+
+
+/* =====================================================
+                    BACKEND URL
+===================================================== */
+
+const API_URL = "http://localhost:3000";
+
+
+/* =====================================================
+                    APPLICATION START
+===================================================== */
 
 initializeDashboard();
 
 
 /* =====================================================
-                INITIALIZE
+                    INITIALIZE DASHBOARD
 ===================================================== */
 
-function initializeDashboard() {
+async function initializeDashboard() {
 
-    loadUser();
+    console.log(
 
-    loadStatistics();
+        "Dashboard Initialized"
 
-    loadRecentMedicines();
+    );
+
+
+    /* =============================================
+                    WELCOME MESSAGE
+    ============================================= */
+
+    displayWelcomeMessage();
+
+
+    /* =============================================
+                    LOAD DASHBOARD DATA
+    ============================================= */
+
+    await loadDashboardData();
 
 }
 
 
 /* =====================================================
-                LOAD USER
+                    DISPLAY WELCOME MESSAGE
 ===================================================== */
 
-function loadUser() {
+function displayWelcomeMessage() {
 
     const currentUser = JSON.parse(
 
@@ -49,76 +88,353 @@ function loadUser() {
 
     );
 
+
     if (!currentUser) {
 
         return;
 
     }
 
-    welcomeMessage.textContent =
 
-        `Welcome Back, ${currentUser.fullName}!`;
+    if (welcomeMessage) {
 
-}
+        welcomeMessage.textContent =
 
+            `Welcome, ${currentUser.fullName}!`;
 
-/* =====================================================
-                LOAD STATISTICS
-===================================================== */
-
-function loadStatistics() {
-
-    const medicines = JSON.parse(
-
-        localStorage.getItem("medireminderMedicines")
-
-    ) || [];
-
-    totalMedicines.textContent = medicines.length;
+    }
 
 }
 
 
 /* =====================================================
-            LOAD RECENT MEDICINES
+                    GET MEDICINES
 ===================================================== */
 
-function loadRecentMedicines() {
+async function getMedicines() {
 
-    const medicines = JSON.parse(
+    try {
 
-        localStorage.getItem("medireminderMedicines")
+        const response = await fetch(
 
-    ) || [];
+            `${API_URL}/medicines`
 
-    recentMedicineList.innerHTML = "";
+        );
 
-    if (medicines.length === 0) {
 
-        recentMedicineList.innerHTML =
+        const result = await response.json();
 
-            "<p>No medicines added yet.</p>";
+
+        if (!response.ok) {
+
+            console.error(
+
+                "Medicine Error:",
+
+                result.message
+
+            );
+
+            return [];
+
+        }
+
+
+        return result.medicines || [];
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Get Medicines Error:",
+
+            error
+
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* =====================================================
+                    GET HISTORY
+===================================================== */
+
+async function getHistory() {
+
+    try {
+
+        const response = await fetch(
+
+            `${API_URL}/history`
+
+        );
+
+
+        const result = await response.json();
+
+
+        if (!response.ok) {
+
+            console.error(
+
+                "History Error:",
+
+                result.message
+
+            );
+
+            return [];
+
+        }
+
+
+        return result.history || [];
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Get History Error:",
+
+            error
+
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* =====================================================
+                    LOAD DASHBOARD DATA
+===================================================== */
+
+async function loadDashboardData() {
+
+    const medicines = await getMedicines();
+
+    const history = await getHistory();
+
+
+    /* =============================================
+                    UPDATE STATISTICS
+    ============================================= */
+
+    updateStatistics(
+
+        medicines,
+
+        history
+
+    );
+
+
+    /* =============================================
+                    RECENT MEDICINES
+    ============================================= */
+
+    displayRecentMedicines(
+
+        medicines
+
+    );
+
+}
+
+
+/* =====================================================
+                    UPDATE STATISTICS
+===================================================== */
+
+function updateStatistics(
+
+    medicines,
+
+    history
+
+) {
+
+    const totalMedicines = medicines.length;
+
+
+    const takenMedicines = medicines.filter(
+
+        function (medicine) {
+
+            return medicine.status === "Taken";
+
+        }
+
+    ).length;
+
+
+    const pendingMedicines = medicines.filter(
+
+        function (medicine) {
+
+            return medicine.status === "Pending";
+
+        }
+
+    ).length;
+
+
+    /* =============================================
+                    TOTAL
+    ============================================= */
+
+    if (totalMedicinesElement) {
+
+        totalMedicinesElement.textContent =
+
+            totalMedicines;
+
+    }
+
+
+    /* =============================================
+                    TAKEN
+    ============================================= */
+
+    if (takenMedicinesElement) {
+
+        takenMedicinesElement.textContent =
+
+            takenMedicines;
+
+    }
+
+
+    /* =============================================
+                    PENDING
+    ============================================= */
+
+    if (pendingMedicinesElement) {
+
+        pendingMedicinesElement.textContent =
+
+            pendingMedicines;
+
+    }
+
+}
+
+
+/* =====================================================
+                    RECENT MEDICINES
+===================================================== */
+
+function displayRecentMedicines(medicines) {
+
+    if (!recentMedicineList) {
 
         return;
 
     }
 
-    medicines.slice(-5).reverse().forEach(function (medicine) {
 
-        recentMedicineList.innerHTML += `
+    recentMedicineList.innerHTML = "";
 
-            <div class="medicine-card">
 
-                <h3>${medicine.medicineName}</h3>
+    /* =============================================
+                    EMPTY STATE
+    ============================================= */
 
-                <p>${medicine.dosage}</p>
+    if (medicines.length === 0) {
 
-                <p>${medicine.time}</p>
+        recentMedicineList.innerHTML = `
 
-            </div>
+            <p class="empty-state">
+
+                No medicines added yet.
+
+            </p>
 
         `;
 
-    });
+        return;
+
+    }
+
+
+    /* =============================================
+                    GET RECENT MEDICINES
+    ============================================= */
+
+    const recentMedicines = medicines.slice(-5).reverse();
+
+
+    /* =============================================
+                    DISPLAY
+    ============================================= */
+
+    recentMedicines.forEach(
+
+        function (medicine) {
+
+            const statusClass =
+
+                medicine.status
+
+                    .toLowerCase();
+
+
+            recentMedicineList.innerHTML += `
+
+                <article class="recent-card">
+
+                    <h3>
+
+                        ${medicine.medicineName}
+
+                    </h3>
+
+                    <p>
+
+                        <strong>Dosage:</strong>
+
+                        ${medicine.dosage}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Time:</strong>
+
+                        ${medicine.time}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Frequency:</strong>
+
+                        ${medicine.frequency}
+
+                    </p>
+
+                    <p class="status ${statusClass}">
+
+                        ${medicine.status}
+
+                    </p>
+
+                </article>
+
+            `;
+
+        }
+
+    );
 
 }
