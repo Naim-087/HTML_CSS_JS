@@ -17,5 +17,15 @@
         "gender": "Male",
         "password": "87654321",
         "createdAt": "2026-08-08T04:57:19.664Z"
+    },
+    {
+        "id": 1786367413448,
+        "fullName": "juthi Ferdousi",
+        "email": "juthi@gmail.com",
+        "phone": "01712345678",
+        "age": 21,
+        "gender": "Male",
+        "password": "12345678",
+        "createdAt": "2026-08-10T13:10:13.448Z"
     }
 ]
