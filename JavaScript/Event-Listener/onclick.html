@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript HTML Events</h1>
+    <p1> The onclick attribute</p1>
+    <p> Click the button to display the date </p>
+    <p id="show-date"> </p>
+
+    <button id="btn">The time is?</button>
+
+    <script>
+
+      
+       let button = document.getElementById("btn")
+
+       button.addEventListener("click",function(){
+
+        document.getElementById("show-date").innerHTML = Date()
+
+       })
+
+       
+    </script>
+    
+</body>
+</html>

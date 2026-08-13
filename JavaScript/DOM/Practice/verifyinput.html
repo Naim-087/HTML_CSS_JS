@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+    <br>
+        <label>Username : </label>
+        <input type="text" class="forms" id="username" placeholder="Enter your username">
+        <br></br>
+
+        <label>Email : </label>
+        <input type="email" class="forms" id="email" placeholder="Enter your email">
+        <br></br>
+
+        <label>Password : </label>
+        <input type="password" class="forms" id="password" placeholder="Enter your password">
+        <br></br>
+
+       <button id="submitbtn">Submit</button>
+
+<p id="message"></p>
+
+<script>
+    let username = document.getElementById("username");
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    let btn = document.getElementById("submitbtn");
+
+    let message = document.getElementById("message");
+
+    btn.addEventListener("click", function () {
+
+        if (
+            username.value === "" ||
+            email.value === "" ||
+            password.value === ""
+        ) {
+            message.textContent = "Please enter all information";
+            message.style.color = "red";
+            return;
+        }
+
+        if (username.value.length < 4) {
+            message.textContent = "Username must be at least 4 characters";
+            message.style.color = "red";
+            return;
+        }
+
+        if (password.value.length < 8) {
+            message.textContent = "Password must be at least 8 characters";
+            message.style.color = "red";
+            return;
+        }
+
+        message.textContent = "Form submitted successfully!";
+        message.style.color = "green";
+       });
+      </script>
+         
+        </script>
+
+
+    </form>
+    
+</body>
+</html>

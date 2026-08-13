@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Colors</title>
+</head>
+<body>
+    <h1>Onclick Event</h1>
+    <p id="para">Click to change Color</p>
+    <button id="btn">Click Me</button>
+
+    <script>
+        let button = document.getElementById("btn");
+        let isBlue = false; // track state
+
+        button.addEventListener("click", function() {
+            if (isBlue) {
+                // Switch back to default
+                document.body.style.backgroundColor = "white";
+                document.getElementById("para").style.backgroundColor = "transparent";
+            } else {
+                // Apply colors
+                document.body.style.backgroundColor = "lightblue";
+                document.getElementById("para").style.backgroundColor = "green";
+            }
+            isBlue = !isBlue; // flip state
+        });
+    </script>
+</body>
+</html>

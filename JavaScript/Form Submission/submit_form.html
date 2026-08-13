@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Submission Example</title>
+</head>
+<body>
+  <h1>Form Submission with JavaScript</h1>
+
+  <form id="myForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="output"></p>
+
+  <script>
+    let form = document.getElementById("myForm");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // stop page reload
+
+      // Get values
+      let name = document.getElementById("name").value.trim();
+      let email = document.getElementById("email").value.trim();
+
+      // Display result
+      document.getElementById("output").textContent =
+        "Form submitted! Name: " + name + ", Email: " + email;
+
+      // You could also send data to a server here using fetch()
+      // fetch('/submit', { method: 'POST', body: JSON.stringify({name, email}) })
+    });
+  </script>
+</body>
+</html>
+
+</body>
+</html>
