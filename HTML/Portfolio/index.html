@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Naim — Software Engineer &amp; ML Enthusiast</title>
+<meta name="description" content="Portfolio of Naim, a Software Engineering student and Machine Learning enthusiast building in Generative AI and Agentic AI." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- scroll progress indicator -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ambient gradient blobs -->
+<div class="blob blob-a" aria-hidden="true"></div>
+<div class="blob blob-b" aria-hidden="true"></div>
+<div class="blob blob-c" aria-hidden="true"></div>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="#home" class="logo">N<span>.</span></a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link active-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#achievements" class="nav-link">Achievements</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">
+      <span class="theme-icon" id="themeIcon">🌙</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">// Software Engineering Undergrad · DIU</p>
+        <h1>Hi, I'm <span class="grad-text">Naim</span>.<br>I build with <span class="grad-text-alt" id="rotatingRole">Machine Learning</span><span class="cursor-blink">|</span></h1>
+        <p class="hero-desc">
+          I'm a Software Engineering student at Daffodil International University and an Machine Learning Intern at
+          FlyRank AI, currently going deep on Computer Vision , Generative AI and Agentic AI. I like turning research
+          and messy data into things people can actually use — from a full-stack learning platform to
+          AUC-PR-tuned prediction pipelines.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/Naim-087" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+          <a href="https://www.linkedin.com/in/md-naimul-islam-64b73b1b3" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+          <a href="mdnaim2228@gmail.com" aria-label="Email">Email</a>
+        </div>
+      </div>
+
+      <div class="hero-panel reveal" style="--delay:120ms">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+            <span class="terminal-title">profile.json</span>
+          </div>
+          <pre class="terminal-body"><code id="terminalCode"></code><span class="cursor-blink" id="terminalCursor">|</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="scroll-cue" aria-label="Scroll to About section">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="about">
+    <div class="section-head reveal">
+      <p class="eyebrow">01 · About</p>
+      <h2>A little about me</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-avatar reveal">
+        <div class="avatar-ring">
+          <div class="avatar-square">
+            <img src="../myphoto.jpeg" >
+          </div>
+        </div>
+      </div>
+
+      <div class="about-copy reveal" style="--delay:80ms">
+        <p>
+          I'm an undergraduate Software Engineering student based in Dhaka, Bangladesh, with a growing
+          focus on machine learning and generative systems. Alongside coursework, I intern as a Machine
+          Learning Engineer at FlyRank AI, compete in datathons with my team <strong>Team_Space_Noob</strong>,
+          and I'm working toward the Duke of Edinburgh Award (Silver).
+        </p>
+        <p>
+          Most recently I led the engineering documentation and build-out for <strong>SkillForge</strong>,
+          an AI-driven personalized learning platform, and shipped a multi-model ML pipeline for
+          a national datathon on AI in entrepreneurship. I like projects that force me to combine theory
+          — algorithms, data structures, ML fundamentals — with practical, ship-it engineering.
+        </p>
+
+        <div class="fact-grid">
+          <div class="fact-card">
+            <span class="fact-label">Education</span>
+            <span class="fact-value">B.Sc. in Software Engineering, DIU</span>
+          </div>
+          <div class="fact-card">
+            <span class="fact-label">Current Role</span>
+            <span class="fact-value">ML Intern @ FlyRank AI</span>
+          </div>
+          <div class="fact-card">
+            <span class="fact-label">Focus Areas</span>
+            <span class="fact-value">Generative AI · Agentic AI</span>
+          </div>
+          <div class="fact-card">
+            <span class="fact-label">Based In</span>
+            <span class="fact-value">Dhaka, Bangladesh</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills" class="skills">
+    <div class="section-head reveal">
+      <p class="eyebrow">02 · Skills</p>
+      <h2>What I work with</h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-category reveal">
+        <h3>Languages</h3>
+        <div class="chip-row">
+          <span class="chip">Python</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">Java</span>
+          <span class="chip">C</span>
+          <span class="chip">C++</span>
+          <span class="chip">SQL</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal" style="--delay:60ms">
+        <h3>Machine Learning</h3>
+        <div class="chip-row">
+          
+          <span class="chip">Numpy</span>
+          <span class="chip">Pandas</span>
+          <span class="chip">scikit-learn</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">Generative AI</span>
+          <span class="chip">Agentic AI</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal" style="--delay:120ms">
+        <h3>Web Development</h3>
+        <div class="chip-row">
+          <span class="chip">HTML5</span>
+          <span class="chip">CSS3</span>
+          <span class="chip">JavaScript</span>
+           <span class="chip">Node js</span>
+          
+        </div>
+      </div>
+
+      <div class="skill-category reveal" style="--delay:180ms">
+        <h3>Tools &amp; Workflow</h3>
+        <div class="chip-row">
+           <span class="chip">Excel</span>
+            <span class="chip">Power BI</span>
+          <span class="chip">Jupyter</span>
+          <span class="chip">VS Code</span>
+          <span class="chip">Jupyter</span>
+          <span class="chip">Git &amp; GitHub</span>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="proficiency reveal" style="--delay:220ms">
+      <h3>Core proficiency</h3>
+      <div class="bar-row">
+        <div class="bar-label"><span>Machine Learning &amp; Deep Learning</span><span class="bar-pct">90%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-level="90"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>Front-End (HTML/CSS/JS)</span><span class="bar-pct">80%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-level="70"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>Software Design &amp; Documentation</span><span class="bar-pct">85%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-level="85"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span> Algorithms</span><span class="bar-pct">75%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-level="75"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" class="projects">
+    <div class="section-head reveal">
+      <p class="eyebrow">03 · Projects</p>
+      <h2>Things I've built</h2>
+    </div>
+
+    <div class="project-grid">
+      <article class="project-card reveal">
+        <div class="project-top">
+          <span class="project-tag tag-purple">Capstone · Team</span>
+          <span class="project-tag tag-outline">In Progress</span>
+        </div>
+        <h3>SkillForge</h3>
+        <p>
+          An AI-driven, personalized Learning Management System built with a three-member team at DIU.
+          I authored the full engineering artifact set — use case &amp; activity diagrams, DFD Levels 1–2,
+          ER and class diagrams, sequence diagrams — and a complete 55-page final report.
+        </p>
+        <div class="chip-row small">
+          <span class="chip">System Design</span>
+          <span class="chip">ERD / draw.io</span>
+          <span class="chip">Documentation</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="link-arrow">View details →</a>
+        </div>
+      </article>
+
+      <article class="project-card reveal" style="--delay:80ms">
+        <div class="project-top">
+          <span class="project-tag tag-cyan">Datathon</span>
+          <span class="project-tag tag-outline">Team_Space_Noob</span>
+        </div>
+        <h3>Built for AI in Entrepreneurship</h3>
+        <p>
+          A multi-model ML pipeline (RandomForest, XGBoost, LightGBM, CatBoost) wrapped in sklearn
+          Pipelines, validated with StratifiedKFold cross-validation scored on AUC-PR. Debugged real
+          issues along the way — string-label NaN scores, missing pipeline-step prefixes — and shipped
+          XGBoost as the final submission.
+        </p>
+        <div class="chip-row small">
+          <span class="chip">sklearn Pipelines</span>
+          <span class="chip">Cross-Validation</span>
+          <span class="chip">AUC-PR</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="link-arrow">View details →</a>
+        </div>
+      </article>
+
+      <article class="project-card reveal" style="--delay:160ms">
+        <div class="project-top">
+          <span class="project-tag tag-amber">Front-End · Just for Fun</span>
+        </div>
+        <h3>Interactive Confetti Page</h3>
+        <p>
+          A playful single-page site built in vanilla HTML, CSS and JavaScript — canvas confetti bursts,
+          a button that dodges the cursor, a typing animation, and a glassmorphism-styled card layout.
+          A small project purely to sharpen DOM and animation fundamentals.
+        </p>
+        <div class="chip-row small">
+          <span class="chip">Canvas API</span>
+          <span class="chip">DOM Events</span>
+          <span class="chip">Glassmorphism</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="link-arrow">View details →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience" class="experience">
+    <div class="section-head reveal">
+      <p class="eyebrow">04 · Experience</p>
+      <h2>Where I've worked &amp; studied</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">Present</span>
+          <h3>Machine Learning Intern — FlyRank AI</h3>
+          <p>Working on applied ML with a growing focus on Generative AI and Agentic AI systems.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal" style="--delay:100ms">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">Ongoing</span>
+          <h3>B.Sc. in Software Engineering — Daffodil International University</h3>
+          <p>Coursework spanning algorithms, theory of computing, operating systems, and software engineering practice, alongside the SkillForge capstone project.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal" style="--delay:200ms">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">Ongoing</span>
+          <h3>Competitor — Team_Space_Noob</h3>
+          <p>Building ML pipelines under time pressure for national datathons, from data cleaning to final submission.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section id="achievements" class="achievements">
+    <div class="section-head reveal">
+      <p class="eyebrow">05 · Achievements</p>
+      <h2>Milestones along the way</h2>
+    </div>
+
+    <div class="achieve-grid">
+      <div class="achieve-card reveal">
+        <div class="achieve-icon">🏅</div>
+        <h3>Duke of Edinburgh Award — Silver</h3>
+        <p>Working through the Silver level, building skills, service and physical achievement outside the classroom.</p>
+      </div>
+      <div class="achieve-card reveal" style="--delay:80ms">
+        <div class="achieve-icon">📊</div>
+        <h3>Datathon Competitor</h3>
+        <p>Competed in the "Built for AI in Entrepreneurship" datathon with Team_Space_Noob, shipping a full ML pipeline under deadline.</p>
+      </div>
+      <div class="achieve-card reveal" style="--delay:160ms">
+        <div class="achieve-icon">🎓</div>
+        <h3>Strong Academic Standing</h3>
+        <p>Maintaining a strong GPA in the Software Engineering program at DIU while working an active ML internship.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="contact">
+    <div class="section-head reveal">
+      <p class="eyebrow">06 · Contact</p>
+      <h2>Let's build something</h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-copy reveal">
+        <p>
+          Whether it's a project idea, a datathon team-up, or an opportunity at your company —
+          my inbox is open. I usually reply within a couple of days.
+        </p>
+        <ul class="contact-list">
+          <li><span>Email</span><a href="mailto:your-email@example.com">mdnaim2228@gmail.com</a></li>
+          <li><span>Location</span><a href="#">Dhaka, Bangladesh</a></li>
+          <li><span>GitHub</span><a href="https://github.com/Naim-087" target="_blank" rel="noopener">https://github.com/Naim-087</a></li>
+          <li><span>LinkedIn</span><a href="www.linkedin.com/in/md-naimul-islam-64b73b1b3" target="_blank" rel="noopener">www.linkedin.com/in/md-naimul-islam-64b73b1b3</a></li>
+        </ul>
+      </div>
+
+      <form class="contact-form reveal" id="contactForm" style="--delay:100ms"
+        action="https://formsubmit.co/your-email@example.com" method="POST">
+
+        <!-- FormSubmit configuration -->
+        <input type="hidden" name="_subject" value="New message from your portfolio site!">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <!-- honeypot spam trap -->
+        <input type="text" name="_honey" style="display:none">
+
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="What's on your mind?" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+          <span id="submitLabel">Send Message</span>
+        </button>
+
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Designed &amp; built by Naim — © <span id="year"></span>. Made with HTML, CSS &amp; JavaScript.</p>
+</footer>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
