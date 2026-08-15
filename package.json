@@ -1,0 +1,21 @@
+{
+  "name": "html_css_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naim-087/HTML_CSS_JS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Naim-087/HTML_CSS_JS/issues"
+  },
+  "homepage": "https://github.com/Naim-087/HTML_CSS_JS#readme"
+}
