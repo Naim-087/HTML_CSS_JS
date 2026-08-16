@@ -9,6 +9,13 @@ console.log("Dashboard Module Loaded");
 
 
 /* =====================================================
+                    PROTECT PAGE
+===================================================== */
+
+protectPage();
+
+
+/* =====================================================
                     DOM ELEMENTS
 ===================================================== */
 
@@ -54,9 +61,7 @@ initializeDashboard();
 async function initializeDashboard() {
 
     console.log(
-
         "Dashboard Initialized"
-
     );
 
 
@@ -77,16 +82,27 @@ async function initializeDashboard() {
 
 
 /* =====================================================
+                    GET CURRENT USER
+===================================================== */
+
+function getCurrentUser() {
+
+    return JSON.parse(
+
+        localStorage.getItem("currentUser")
+
+    );
+
+}
+
+
+/* =====================================================
                     DISPLAY WELCOME MESSAGE
 ===================================================== */
 
 function displayWelcomeMessage() {
 
-    const currentUser = JSON.parse(
-
-        localStorage.getItem("currentUser")
-
-    );
+    const currentUser = getCurrentUser();
 
 
     if (!currentUser) {
@@ -108,21 +124,41 @@ function displayWelcomeMessage() {
 
 
 /* =====================================================
-                    GET MEDICINES
+                    GET USER MEDICINES
 ===================================================== */
 
 async function getMedicines() {
+
+    const currentUser = getCurrentUser();
+
+
+    /* =============================================
+                    NO USER
+    ============================================= */
+
+    if (!currentUser) {
+
+        return [];
+
+    }
+
 
     try {
 
         const response = await fetch(
 
-            `${API_URL}/medicines`
+            `${API_URL}/medicines?userId=${currentUser.id}`
 
         );
 
 
         const result = await response.json();
+
+
+        console.log(
+            "Dashboard Medicines:",
+            result
+        );
 
 
         if (!response.ok) {
@@ -162,21 +198,41 @@ async function getMedicines() {
 
 
 /* =====================================================
-                    GET HISTORY
+                    GET USER HISTORY
 ===================================================== */
 
 async function getHistory() {
+
+    const currentUser = getCurrentUser();
+
+
+    /* =============================================
+                    NO USER
+    ============================================= */
+
+    if (!currentUser) {
+
+        return [];
+
+    }
+
 
     try {
 
         const response = await fetch(
 
-            `${API_URL}/history`
+            `${API_URL}/history?userId=${currentUser.id}`
 
         );
 
 
         const result = await response.json();
+
+
+        console.log(
+            "Dashboard History:",
+            result
+        );
 
 
         if (!response.ok) {
@@ -264,29 +320,47 @@ function updateStatistics(
 
 ) {
 
-    const totalMedicines = medicines.length;
+    const totalMedicines =
+
+        medicines.length;
 
 
-    const takenMedicines = medicines.filter(
+    const takenMedicines =
 
-        function (medicine) {
+        medicines.filter(
 
-            return medicine.status === "Taken";
+            function (medicine) {
 
-        }
+                return (
 
-    ).length;
+                    medicine.status ===
+
+                    "Taken"
+
+                );
+
+            }
+
+        ).length;
 
 
-    const pendingMedicines = medicines.filter(
+    const pendingMedicines =
 
-        function (medicine) {
+        medicines.filter(
 
-            return medicine.status === "Pending";
+            function (medicine) {
 
-        }
+                return (
 
-    ).length;
+                    medicine.status ===
+
+                    "Pending"
+
+                );
+
+            }
+
+        ).length;
 
 
     /* =============================================
@@ -334,7 +408,11 @@ function updateStatistics(
                     RECENT MEDICINES
 ===================================================== */
 
-function displayRecentMedicines(medicines) {
+function displayRecentMedicines(
+
+    medicines
+
+) {
 
     if (!recentMedicineList) {
 
@@ -371,7 +449,13 @@ function displayRecentMedicines(medicines) {
                     GET RECENT MEDICINES
     ============================================= */
 
-    const recentMedicines = medicines.slice(-5).reverse();
+    const recentMedicines =
+
+        medicines
+
+            .slice(-5)
+
+            .reverse();
 
 
     /* =============================================
@@ -399,6 +483,7 @@ function displayRecentMedicines(medicines) {
 
                     </h3>
 
+
                     <p>
 
                         <strong>Dosage:</strong>
@@ -406,6 +491,7 @@ function displayRecentMedicines(medicines) {
                         ${medicine.dosage}
 
                     </p>
+
 
                     <p>
 
@@ -415,6 +501,7 @@ function displayRecentMedicines(medicines) {
 
                     </p>
 
+
                     <p>
 
                         <strong>Frequency:</strong>
@@ -422,6 +509,7 @@ function displayRecentMedicines(medicines) {
                         ${medicine.frequency}
 
                     </p>
+
 
                     <p class="status ${statusClass}">
 

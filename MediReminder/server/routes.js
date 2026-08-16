@@ -311,11 +311,34 @@ if (
 
     request.method === "GET" &&
 
-    request.url === "/medicines"
+    request.url.startsWith("/medicines")
 
 ) {
 
     try {
+
+        /* =============================================
+                    GET USER ID
+        ============================================= */
+
+        const url = new URL(
+
+            request.url,
+
+            "http://localhost:3000"
+
+        );
+
+        const userId = url.searchParams.get(
+
+            "userId"
+
+        );
+
+
+        /* =============================================
+                    READ MEDICINES
+        ============================================= */
 
         const medicines = database.readData(
 
@@ -323,11 +346,39 @@ if (
 
         );
 
+
+        /* =============================================
+                    FILTER BY USER
+        ============================================= */
+
+        const userMedicines = medicines.filter(
+
+            function (medicine) {
+
+                return (
+
+                    String(medicine.userId) ===
+
+                    String(userId)
+
+                );
+
+            }
+
+        );
+
+
+        /* =============================================
+                    SUCCESS RESPONSE
+        ============================================= */
+
         response.writeHead(200, {
 
-            "Content-Type": "application/json"
+            "Content-Type":
+                "application/json"
 
         });
+
 
         response.end(
 
@@ -335,7 +386,7 @@ if (
 
                 success: true,
 
-                medicines: medicines
+                medicines: userMedicines
 
             })
 
@@ -353,11 +404,14 @@ if (
 
         );
 
+
         response.writeHead(500, {
 
-            "Content-Type": "application/json"
+            "Content-Type":
+                "application/json"
 
         });
+
 
         response.end(
 
@@ -365,7 +419,8 @@ if (
 
                 success: false,
 
-                message: "Unable to load medicines."
+                message:
+                    "Unable to load medicines."
 
             })
 
@@ -851,11 +906,34 @@ if (
 
     request.method === "GET" &&
 
-    request.url === "/history"
+    request.url.startsWith("/history")
 
 ) {
 
     try {
+
+        /* =============================================
+                    GET CURRENT USER ID
+        ============================================= */
+
+        const url = new URL(
+
+            request.url,
+
+            "http://localhost:3000"
+
+        );
+
+        const userId = url.searchParams.get(
+
+            "userId"
+
+        );
+
+
+        /* =============================================
+                    READ HISTORY
+        ============================================= */
 
         const history = database.readData(
 
@@ -863,11 +941,39 @@ if (
 
         );
 
+
+        /* =============================================
+                    FILTER HISTORY BY USER
+        ============================================= */
+
+        const userHistory = history.filter(
+
+            function (record) {
+
+                return (
+
+                    String(record.userId) ===
+
+                    String(userId)
+
+                );
+
+            }
+
+        );
+
+
+        /* =============================================
+                    SUCCESS RESPONSE
+        ============================================= */
+
         response.writeHead(200, {
 
-            "Content-Type": "application/json"
+            "Content-Type":
+                "application/json"
 
         });
+
 
         response.end(
 
@@ -875,7 +981,7 @@ if (
 
                 success: true,
 
-                history: history
+                history: userHistory
 
             })
 
@@ -893,11 +999,14 @@ if (
 
         );
 
+
         response.writeHead(500, {
 
-            "Content-Type": "application/json"
+            "Content-Type":
+                "application/json"
 
         });
+
 
         response.end(
 
@@ -905,7 +1014,8 @@ if (
 
                 success: false,
 
-                message: "Unable to load history."
+                message:
+                    "Unable to load history."
 
             })
 
@@ -916,7 +1026,6 @@ if (
     return;
 
 }
-
 
 /* =====================================================
                     ADD HISTORY

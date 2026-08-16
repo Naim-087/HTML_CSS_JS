@@ -9,6 +9,13 @@ console.log("Medicine Module Loaded");
 
 
 /* =====================================================
+                    PROTECT PAGE
+===================================================== */
+
+protectPage();
+
+
+/* =====================================================
                     DOM ELEMENTS
 ===================================================== */
 
@@ -66,7 +73,9 @@ function initializeMedicine() {
 
     if (medicineForm) {
 
-        console.log("Add Medicine Page Detected");
+        console.log(
+            "Add Medicine Page Detected"
+        );
 
         medicineForm.addEventListener(
 
@@ -85,11 +94,28 @@ function initializeMedicine() {
 
     if (medicineList) {
 
-        console.log("Medicines Page Detected");
+        console.log(
+            "Medicines Page Detected"
+        );
 
         displayMedicines();
 
     }
+
+}
+
+
+/* =====================================================
+                    GET CURRENT USER
+===================================================== */
+
+function getCurrentUser() {
+
+    return JSON.parse(
+
+        localStorage.getItem("currentUser")
+
+    );
 
 }
 
@@ -102,10 +128,40 @@ async function handleMedicine(event) {
 
     event.preventDefault();
 
-    console.log("Add Medicine Button Clicked");
+    console.log(
+        "Add Medicine Button Clicked"
+    );
 
 
-    const medicine = getMedicineData();
+    /* =============================================
+                    CURRENT USER
+    ============================================= */
+
+    const currentUser = getCurrentUser();
+
+
+    if (!currentUser) {
+
+        alert(
+            "Please login first."
+        );
+
+        window.location.href = "login.html";
+
+        return;
+
+    }
+
+
+    /* =============================================
+                    GET MEDICINE DATA
+    ============================================= */
+
+    const medicine = getMedicineData(
+
+        currentUser.id
+
+    );
 
 
     /* =============================================
@@ -131,13 +187,19 @@ async function handleMedicine(event) {
 
                 headers: {
 
-                    "Content-Type": "application/json",
+                    "Content-Type":
+                        "application/json",
 
-                    "Accept": "application/json"
+                    "Accept":
+                        "application/json"
 
                 },
 
-                body: JSON.stringify(medicine)
+                body: JSON.stringify(
+
+                    medicine
+
+                )
 
             }
 
@@ -148,11 +210,8 @@ async function handleMedicine(event) {
 
 
         console.log(
-
             "Backend Response:",
-
             result
-
         );
 
 
@@ -162,7 +221,9 @@ async function handleMedicine(event) {
 
         if (!response.ok) {
 
-            alert(result.message);
+            alert(
+                result.message
+            );
 
             return;
 
@@ -174,9 +235,7 @@ async function handleMedicine(event) {
         ========================================= */
 
         alert(
-
             "Medicine Added Successfully!"
-
         );
 
 
@@ -187,12 +246,10 @@ async function handleMedicine(event) {
     catch (error) {
 
         console.error(
-
             "Add Medicine Error:",
-
             error
-
         );
+
 
         alert(
 
@@ -211,21 +268,28 @@ async function handleMedicine(event) {
                     GET MEDICINE DATA
 ===================================================== */
 
-function getMedicineData() {
+function getMedicineData(userId) {
 
     return {
 
         id: Date.now(),
 
-        medicineName: medicineNameInput.value.trim(),
+        userId: userId,
 
-        dosage: dosageInput.value.trim(),
+        medicineName:
+            medicineNameInput.value.trim(),
 
-        time: timeInput.value,
+        dosage:
+            dosageInput.value.trim(),
 
-        frequency: frequencyInput.value,
+        time:
+            timeInput.value,
 
-        status: "Pending"
+        frequency:
+            frequencyInput.value,
+
+        status:
+            "Pending"
 
     };
 
@@ -251,14 +315,13 @@ function validateMedicine(medicine) {
     ) {
 
         alert(
-
             "Please fill in all fields."
-
         );
 
         return false;
 
     }
+
 
     return true;
 
@@ -271,11 +334,25 @@ function validateMedicine(medicine) {
 
 async function getMedicines() {
 
+    const currentUser = getCurrentUser();
+
+
+    /* =============================================
+                    NO USER
+    ============================================= */
+
+    if (!currentUser) {
+
+        return [];
+
+    }
+
+
     try {
 
         const response = await fetch(
 
-            `${API_URL}/medicines`
+            `${API_URL}/medicines?userId=${currentUser.id}`
 
         );
 
@@ -284,17 +361,16 @@ async function getMedicines() {
 
 
         console.log(
-
             "Medicines Response:",
-
             result
-
         );
 
 
         if (!response.ok) {
 
-            alert(result.message);
+            alert(
+                result.message
+            );
 
             return [];
 
@@ -308,18 +384,15 @@ async function getMedicines() {
     catch (error) {
 
         console.error(
-
             "Get Medicines Error:",
-
             error
-
         );
+
 
         alert(
-
             "Unable to connect to the server."
-
         );
+
 
         return [];
 
@@ -335,6 +408,13 @@ async function getMedicines() {
 async function displayMedicines() {
 
     const medicines = await getMedicines();
+
+
+    if (!medicineList) {
+
+        return;
+
+    }
 
 
     medicineList.innerHTML = "";
@@ -365,78 +445,87 @@ async function displayMedicines() {
                     DISPLAY CARDS
     ============================================= */
 
-    medicines.forEach(function (medicine) {
+    medicines.forEach(
 
-        medicineList.innerHTML += `
+        function (medicine) {
 
-            <article class="medicine-card">
+            medicineList.innerHTML += `
 
-                <h3>
+                <article class="medicine-card">
 
-                    ${medicine.medicineName}
+                    <h3>
 
-                </h3>
+                        ${medicine.medicineName}
 
-                <p>
+                    </h3>
 
-                    <strong>Dosage:</strong>
 
-                    ${medicine.dosage}
+                    <p>
 
-                </p>
+                        <strong>Dosage:</strong>
 
-                <p>
+                        ${medicine.dosage}
 
-                    <strong>Time:</strong>
+                    </p>
 
-                    ${medicine.time}
 
-                </p>
+                    <p>
 
-                <p>
+                        <strong>Time:</strong>
 
-                    <strong>Frequency:</strong>
+                        ${medicine.time}
 
-                    ${medicine.frequency}
+                    </p>
 
-                </p>
 
-                <p>
+                    <p>
 
-                    <strong>Status:</strong>
+                        <strong>Frequency:</strong>
 
-                    ${medicine.status}
+                        ${medicine.frequency}
 
-                </p>
+                    </p>
 
-                <div class="medicine-actions">
 
-                    <button
-                        class="taken-btn"
-                        onclick="markAsTaken(${medicine.id})">
+                    <p>
 
-                        Mark as Taken
+                        <strong>Status:</strong>
 
-                    </button>
+                        ${medicine.status}
 
-                    <button
-                        class="delete-btn"
-                        onclick="deleteMedicine(${medicine.id})">
+                    </p>
 
-                        Delete
 
-                    </button>
+                    <div class="medicine-actions">
 
-                </div>
+                        <button
+                            class="taken-btn"
+                            onclick="markAsTaken(${medicine.id})">
 
-            </article>
+                            Mark as Taken
 
-        `;
+                        </button>
 
-    });
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteMedicine(${medicine.id})">
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }
+
+    );
 
 }
-
 
 
 /* =====================================================
@@ -478,11 +567,8 @@ async function deleteMedicine(id) {
 
 
         console.log(
-
             "Delete Response:",
-
             result
-
         );
 
 
@@ -492,7 +578,9 @@ async function deleteMedicine(id) {
 
         if (!response.ok) {
 
-            alert(result.message);
+            alert(
+                result.message
+            );
 
             return;
 
@@ -504,9 +592,7 @@ async function deleteMedicine(id) {
         ============================================= */
 
         alert(
-
             "Medicine deleted successfully."
-
         );
 
 
@@ -521,24 +607,18 @@ async function deleteMedicine(id) {
     catch (error) {
 
         console.error(
-
             "Delete Medicine Error:",
-
             error
-
         );
 
+
         alert(
-
             "Unable to connect to the server."
-
         );
 
     }
 
 }
-
-
 
 
 /* =====================================================
@@ -564,16 +644,44 @@ async function markAsTaken(id) {
     try {
 
         /* =============================================
+                    CURRENT USER
+        ============================================= */
+
+        const currentUser = getCurrentUser();
+
+
+        if (!currentUser) {
+
+            alert(
+                "Please login first."
+            );
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        /* =============================================
                     FIND MEDICINE
         ============================================= */
 
         const medicines = await getMedicines();
 
+
         const medicine = medicines.find(
 
             function (item) {
 
-                return String(item.id) === String(id);
+                return (
+
+                    String(item.id) ===
+
+                    String(id)
+
+                );
 
             }
 
@@ -582,7 +690,9 @@ async function markAsTaken(id) {
 
         if (!medicine) {
 
-            alert("Medicine not found.");
+            alert(
+                "Medicine not found."
+            );
 
             return;
 
@@ -592,6 +702,10 @@ async function markAsTaken(id) {
         /* =============================================
                     UPDATE MEDICINE
         ============================================= */
+
+        const takenAt =
+            new Date().toISOString();
+
 
         const updateResponse = await fetch(
 
@@ -603,7 +717,8 @@ async function markAsTaken(id) {
 
                 headers: {
 
-                    "Content-Type": "application/json"
+                    "Content-Type":
+                        "application/json"
 
                 },
 
@@ -611,7 +726,7 @@ async function markAsTaken(id) {
 
                     status: "Taken",
 
-                    takenAt: new Date().toISOString()
+                    takenAt: takenAt
 
                 })
 
@@ -627,7 +742,9 @@ async function markAsTaken(id) {
 
         if (!updateResponse.ok) {
 
-            alert(updateResult.message);
+            alert(
+                updateResult.message
+            );
 
             return;
 
@@ -640,17 +757,26 @@ async function markAsTaken(id) {
 
         const historyRecord = {
 
+            id: Date.now(),
+
+            userId: currentUser.id,
+
             medicineId: medicine.id,
 
-            medicineName: medicine.medicineName,
+            medicineName:
+                medicine.medicineName,
 
-            dosage: medicine.dosage,
+            dosage:
+                medicine.dosage,
 
-            scheduledTime: medicine.time,
+            scheduledTime:
+                medicine.time,
 
-            status: "Taken",
+            status:
+                "Taken",
 
-            takenAt: new Date().toISOString()
+            takenAt:
+                takenAt
 
         };
 
@@ -665,11 +791,16 @@ async function markAsTaken(id) {
 
                 headers: {
 
-                    "Content-Type": "application/json"
+                    "Content-Type":
+                        "application/json"
 
                 },
 
-                body: JSON.stringify(historyRecord)
+                body: JSON.stringify(
+
+                    historyRecord
+
+                )
 
             }
 
@@ -683,7 +814,9 @@ async function markAsTaken(id) {
 
         if (!historyResponse.ok) {
 
-            alert(historyResult.message);
+            alert(
+                historyResult.message
+            );
 
             return;
 
@@ -695,9 +828,7 @@ async function markAsTaken(id) {
         ============================================= */
 
         alert(
-
             "Medicine marked as taken."
-
         );
 
 
@@ -715,10 +846,9 @@ async function markAsTaken(id) {
 
         );
 
+
         alert(
-
             "Unable to connect to the server."
-
         );
 
     }

@@ -297,7 +297,7 @@ function validateSignup(user) {
 
     }
 
-    if (user.phone.length < 11) {
+    if (user.phone.length === 10) {
 
         alert("Please enter a valid phone number.");
         return false;

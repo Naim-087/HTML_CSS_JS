@@ -27,5 +27,25 @@
         "gender": "Male",
         "password": "12345678",
         "createdAt": "2026-08-10T13:10:13.448Z"
+    },
+    {
+        "id": 1786892625850,
+        "fullName": "Iftekhar Sulaiman",
+        "email": "iftekhar@gmail.com",
+        "phone": "012345678910",
+        "age": 22,
+        "gender": "Male",
+        "password": "12345678",
+        "createdAt": "2026-08-16T15:03:45.850Z"
+    },
+    {
+        "id": 1786895447142,
+        "fullName": "Samiya Rahman",
+        "email": "samiya@gmail.com",
+        "phone": "01234567892",
+        "age": 15,
+        "gender": "Male",
+        "password": "12345678",
+        "createdAt": "2026-08-16T15:50:47.142Z"
     }
 ]

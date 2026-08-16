@@ -9,25 +9,26 @@ console.log("History Module Loaded");
 
 
 /* =====================================================
+                    PROTECT PAGE
+===================================================== */
+
+protectPage();
+
+
+/* =====================================================
                     DOM ELEMENTS
 ===================================================== */
 
 const historyList = document.querySelector(
-
     ".history-list"
-
 );
 
 const searchHistoryInput = document.getElementById(
-
     "search-history"
-
 );
 
 const historyStatusSelect = document.getElementById(
-
     "history-status"
-
 );
 
 
@@ -59,13 +60,15 @@ initializeHistory();
 function initializeHistory() {
 
     console.log(
-
         "History Module Initialized"
-
     );
 
 
     if (!historyList) {
+
+        console.error(
+            "History list element not found."
+        );
 
         return;
 
@@ -82,11 +85,8 @@ function initializeHistory() {
     if (searchHistoryInput) {
 
         searchHistoryInput.addEventListener(
-
             "input",
-
             filterHistory
-
         );
 
     }
@@ -99,14 +99,24 @@ function initializeHistory() {
     if (historyStatusSelect) {
 
         historyStatusSelect.addEventListener(
-
             "change",
-
             filterHistory
-
         );
 
     }
+
+}
+
+
+/* =====================================================
+                    GET CURRENT USER
+===================================================== */
+
+function getCurrentUser() {
+
+    return JSON.parse(
+        localStorage.getItem("currentUser")
+    );
 
 }
 
@@ -117,11 +127,29 @@ function initializeHistory() {
 
 async function getHistory() {
 
+    const currentUser = getCurrentUser();
+
+
+    /* =============================================
+                    NO USER
+    ============================================= */
+
+    if (!currentUser) {
+
+        console.error(
+            "No logged-in user found."
+        );
+
+        return [];
+
+    }
+
+
     try {
 
         const response = await fetch(
 
-            `${API_URL}/history`
+            `${API_URL}/history?userId=${currentUser.id}`
 
         );
 
@@ -130,17 +158,17 @@ async function getHistory() {
 
 
         console.log(
-
             "History Response:",
-
             result
-
         );
 
 
         if (!response.ok) {
 
-            alert(result.message);
+            console.error(
+                "History Error:",
+                result.message
+            );
 
             return [];
 
@@ -154,17 +182,8 @@ async function getHistory() {
     catch (error) {
 
         console.error(
-
             "Get History Error:",
-
             error
-
-        );
-
-        alert(
-
-            "Unable to connect to the server."
-
         );
 
         return [];
@@ -221,55 +240,62 @@ function displayHistory(records) {
                     HISTORY CARDS
     ============================================= */
 
-    records.forEach(function (record) {
+    records
+        .slice()
+        .reverse()
+        .forEach(function (record) {
 
-        historyList.innerHTML += `
+            historyList.innerHTML += `
 
-            <article class="card history-card">
+                <article class="card history-card">
 
-                <h3>
+                    <h3>
 
-                    ${record.medicineName}
+                        ${record.medicineName}
 
-                </h3>
+                    </h3>
 
-                <p>
 
-                    <strong>Status:</strong>
+                    <p>
 
-                    ${record.status}
+                        <strong>Status:</strong>
 
-                </p>
+                        ${record.status}
 
-                <p>
+                    </p>
 
-                    <strong>Dosage:</strong>
 
-                    ${record.dosage}
+                    <p>
 
-                </p>
+                        <strong>Dosage:</strong>
 
-                <p>
+                        ${record.dosage}
 
-                    <strong>Date:</strong>
+                    </p>
 
-                    ${formatDate(record.takenAt)}
 
-                </p>
+                    <p>
 
-                <p>
+                        <strong>Date:</strong>
 
-                    <strong>Time:</strong>
+                        ${formatDate(record.takenAt)}
 
-                    ${formatTime(record.takenAt)}
+                    </p>
 
-                </p>
 
-            </article>
+                    <p>
 
-        `;
+                        <strong>Time:</strong>
 
-    });
+                        ${formatTime(record.takenAt)}
+
+                    </p>
+
+                </article>
+
+            `;
+
+        });
 
 }
 
@@ -285,9 +311,7 @@ function filterHistory() {
         searchHistoryInput
 
             ? searchHistoryInput.value
-
                 .trim()
-
                 .toLowerCase()
 
             : "";
@@ -308,17 +332,14 @@ function filterHistory() {
 
             const medicineName =
 
-                record.medicineName
-
+                String(record.medicineName || "")
                     .toLowerCase();
 
 
             const matchesSearch =
 
                 medicineName.includes(
-
                     searchValue
-
                 );
 
 
@@ -353,6 +374,13 @@ function filterHistory() {
 
 function formatDate(date) {
 
+    if (!date) {
+
+        return "Not available";
+
+    }
+
+
     return new Date(date).toLocaleDateString(
 
         "en-GB",
@@ -378,6 +406,13 @@ function formatDate(date) {
 
 function formatTime(date) {
 
+    if (!date) {
+
+        return "Not available";
+
+    }
+
+
     return new Date(date).toLocaleTimeString(
 
         "en-US",
@@ -393,4 +428,3 @@ function formatTime(date) {
     );
 
 }
-
